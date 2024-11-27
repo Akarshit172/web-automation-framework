@@ -37,6 +37,16 @@ Valid Site Visit Test 2
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Valid Site Visit Test 2
     FOR    ${user}    IN    @{login_data}
         Perform Site Visit Steps    ${user}
+        Log_Out
     END
     #Close Browser
 
+Valid PTP Test 3
+    #Open Browser    https://kafalah-sit.kiya.ai/finairoLending-1.0.1/LogoutPage    chrome
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Valid PTP Test 3
+    FOR    ${user}    IN    @{login_data}
+        Perform Site Visit Steps    ${user}
+        PTP_Flow    ${user}
+    END
+    #Close Browser

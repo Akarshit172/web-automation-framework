@@ -45,6 +45,8 @@ Perform Site Visit Steps
     Capture Screenshot
     Select Dropdown Value    //select[@id="disposition"]    ${user['disposition']}
     Sleep    4s
+    Select Checkbox By Label Text    ${user['Guarantee A/c No. / #CR']}
+    Sleep    4s
     Capture Screenshot
     Select Dropdown Value    //select[@id="communicationMode"]    ${user['communicationMode']}
     Sleep    4s
@@ -56,8 +58,30 @@ Perform Site Visit Steps
     Capture Screenshot
     Input Remark    ${user['remark']}
     Sleep    2s
-    Capture Screenshot
     Select Dropdown Value    //select[@id="action"]    ${user['action']}
+    Capture Screenshot
+    Click Next_Btn
+    #Sleep    2s
+    Capture Screenshot
+PTP_Flow
+    [Arguments]    ${user}
+    #Enter Due Date
+    Sleep    2s
+    Capture Screenshot
+    Input Installment Amount    ${user['InstallmentAmount']}
+    Sleep    2s
+    Capture Screenshot
+    Select Payment Mode    ${user['PaymentMode']}
+    Sleep    2s
+    Capture Screenshot
+    Input Remarks   ${user['remark']}
+    Sleep    2s
+    Capture Screenshot
+    Click Save_Btn
+    Sleep    5s
+    Capture Screenshot
+
+Log_Out
     Click Logout
     Capture Screenshot
     Click Logout_Pop_Up_Yes Button
@@ -120,11 +144,10 @@ Enter disposeDate
     Click Element    //select[@id="dispositionValue"]
 Enter actionDate
     #${current_datetime}=    Get Current Date    ${DATE_FORMAT}
-    ${current_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
-    Log    Current date and time: ${current_datetime}
-
+    ${action_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
+    Log    Action date and time: ${action_datetime}
     # Input the current datetime into the input field
-    Input Text    //input[@id='actionDate']    ${current_datetime}
+    Input Text    //input[@id='actionDate']    ${action_datetime}
     #Click Element    //select[@id="dispositionValue"]
 Select Dropdown Value
     [Arguments]    ${dropdown_locator}    ${value}
@@ -137,6 +160,9 @@ Click Add Action
     Click Element    //button[@id='saveData']
 Click Logout
     Click Element    //li[@class="hil-logout"]/a
+
+Click Next_Btn
+    Click Element    //div[@id="nextBtn"]
 
 Click Logout_Pop_Up_Yes Button
     ${is_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    //a[@id="logoutYes"]    timeout=5s
@@ -157,3 +183,33 @@ Select Value From Dropdown
 Input Remark
     [Arguments]    ${actionRemark}
     Input Text    //input[@id='remark']    ${actionRemark}
+
+Input Remarks
+    [Arguments]    ${actionRemark}
+    Input Text    //textarea[@id='remarks']    ${actionRemark}
+
+Select Checkbox By Label Text
+    [Arguments]    ${label_text}
+    Click Element    //div[@class='dropdown multi-select-drop']//label[text()="Select"]
+    ${checkbox_xpath}=    Set Variable    //div[@class='dropdown-list']//label[contains(text(),'${label_text}')]//input[@type='checkbox']
+    Wait Until Element Is Visible    ${checkbox_xpath}    timeout=5
+    Click Element    ${checkbox_xpath}
+
+Enter Due Date
+    #${current_datetime}=    Get Current Date    ${DATE_FORMAT}
+    ${due_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(days=5)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
+    Log    Due date and time: ${due_datetime}
+    # Input the current datetime into the input field
+    Input Text    //input[@id='planDate']    ${due_datetime}
+    #Click Element    //select[@id="dispositionValue"]
+
+Input Installment Amount
+    [Arguments]    ${installmentAmount}
+    Input Text    //input[@id='plannedAmt']    ${installmentAmount}
+
+Select Payment Mode
+    [Arguments]    ${value}
+    Select From List By Value    //select[@id="paymentMode"]    ${value}
+
+Click Save_Btn
+    Click Element    //div[@id="saveData"]
