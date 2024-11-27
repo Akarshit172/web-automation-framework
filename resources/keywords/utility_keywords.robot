@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    ../../libraries/custom_selenium_keywords.py  # Import Python custom keywords
+#Library    ../../libraries/custom_selenium_keywords.py  # Import Python custom keywords
 
 *** Keywords ***
 Perform Login Steps
@@ -37,10 +37,10 @@ Perform Site Visit Steps
     Capture Screenshot
     Select Arab National Bank
     Capture Screenshot
-    Click Pre DPD =>180
+    Click RuleName    ${user['ruleName']}
     Sleep    4s
     Capture Screenshot
-    Click On CR
+    Click On CR    ${user['CR']}
     Sleep    4s
     Capture Screenshot
     Select Dropdown Value    //select[@id="disposition"]    ${user['disposition']}
@@ -145,10 +145,12 @@ Click Logout_Pop_Up_Yes Button
 Wait For PopUp
     Wait Until Element Is Visible    //a[@id='popUpYes']    timeout=10s
 
-Click Pre DPD =>180
-    Double Click Element    //td[text()="Pre DPD =>180"]
+Click RuleName
+    [Arguments]    ${ruleName}
+    Double Click Element    //td[text()='${ruleName}']
 Click On CR
-    Double Click Element    //td[text()="4032025287"]
+    [Arguments]    ${CR}
+    Double Click Element    //td[text()='${CR}']
 Select Value From Dropdown
 	[Arguments]    ${dropdown_locator}    ${value_to_select}
     Select Dropdown Value    ${dropdown_locator}    ${value_to_select}

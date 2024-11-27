@@ -1,44 +1,34 @@
-import subprocess
-import sys
 import os
+import subprocess
 
+import openpyxl
 
-# Function to execute Robot Framework test cases
-def run_robot_tests(test_cases):
-    # Absolute path to the Robot test file
-    robot_file_path = r"D:/New_automation_/web-automation-framework/tests/test_login.robot"
+#from libraries.read_excel_data import ExcelUtils
 
-    # Ensure the file exists at the specified path
-    if not os.path.exists(robot_file_path):
-        print(f"Error: The file {robot_file_path} does not exist.")
-        sys.exit(1)
+def run_tests(test_file, selected_tests=None):
+    """Run specific or all tests."""
+    command = ["robot"]
+    if selected_tests:
+        command.extend(["--test", " OR ".join(selected_tests)])
+    command.append(test_file)
+    subprocess.run(command)
 
-    # Base Robot command
-    command = ['robot']
+def load_test_cases(file_path):
+    """Fetch all unique test cases with non-empty names from Excel."""
+    workbook = openpyxl.load_workbook(file_path)
+    sheet = workbook.active
+    # Use a set to store unique non-empty test case names
+    test_cases = set(row[0] for row in sheet.iter_rows(min_row=2, values_only=True) if row[0])
+    return list(test_cases)
 
-    # Add test cases dynamically to the command
-    if test_cases:
-        for test_case in test_cases:
-            command.extend(['--test', test_case])
-            command.extend([robot_file_path])
-
-    # Print the command for debugging
-    print(f"Running command: {' '.join(command)}")
-
-    # Execute the command
-    try:
-        subprocess.run(command, check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Error running Robot tests: {e}")
-        sys.exit(1)
-
-
-# Main function
 if __name__ == "__main__":
-    # Define an array with the test case names to be executed
-    test_cases_to_run = [
-        "Valid Site Visit Test 2" # Test Case 2
-    ]
+    TEST_FILE = "test_login.robot"
+    TEST_DATA_FILE = "D:/New_automation_/web-automation-framework/resources/test_data/test_data.xlsx"
 
-    # Run the specified test cases
-    run_robot_tests(test_cases_to_run)
+    # Load test cases from Excel
+    test_cases = load_test_cases(TEST_DATA_FILE)
+    print("Available test cases:", test_cases)
+
+    # Specify tests to run or leave empty to run all
+    tests_to_run = ["Valid Site Visit Test 2"]
+    run_tests(TEST_FILE, tests_to_run)
