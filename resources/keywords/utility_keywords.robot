@@ -65,7 +65,7 @@ Perform Site Visit Steps
     Capture Screenshot
 PTP_Flow
     [Arguments]    ${user}
-    #Enter Due Date
+    Enter Due Date
     Sleep    2s
     Capture Screenshot
     Input Installment Amount    ${user['InstallmentAmount']}
@@ -80,7 +80,9 @@ PTP_Flow
     Click Save_Btn
     Sleep    5s
     Capture Screenshot
-
+    #Click Element    //em[text()="Promise To Pay"]/following-sibling::a
+    #Sleep    3s
+    #Capture Screenshot
 Log_Out
     Click Logout
     Capture Screenshot
@@ -159,6 +161,7 @@ Input Action Remark
 Click Add Action
     Click Element    //button[@id='saveData']
 Click Logout
+    Wait Until Element Is Visible    //li[@class="hil-logout"]/a    timeout=10s
     Click Element    //li[@class="hil-logout"]/a
 
 Click Next_Btn
@@ -196,12 +199,11 @@ Select Checkbox By Label Text
     Click Element    ${checkbox_xpath}
 
 Enter Due Date
-    #${current_datetime}=    Get Current Date    ${DATE_FORMAT}
-    ${due_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(days=5)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
-    Log    Due date and time: ${due_datetime}
-    # Input the current datetime into the input field
-    Input Text    //input[@id='planDate']    ${due_datetime}
-    #Click Element    //select[@id="dispositionValue"]
+    Wait Until Element Is Visible    //input[@id='planDate']    timeout=5
+    Click Element    //input[@id='planDate']
+    #Scroll Element Into View    (//td[@data-month="10"]//div[text()="29"])[2]
+    Wait Until Element Is Visible    (//td[@data-date="29"])[last()]    timeout=5
+    Click Element    (//td[@data-date="29"])[last()]
 
 Input Installment Amount
     [Arguments]    ${installmentAmount}
@@ -213,3 +215,7 @@ Select Payment Mode
 
 Click Save_Btn
     Click Element    //div[@id="saveData"]
+
+Scroll Element Into View
+    [Arguments]    ${element}
+    Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
