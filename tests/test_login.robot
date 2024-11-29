@@ -48,5 +48,6 @@ Valid PTP Test 3
     FOR    ${user}    IN    @{login_data}
         Perform Site Visit Steps    ${user}
         PTP_Flow    ${user}
+        Log_Out
     END
     #Close Browser

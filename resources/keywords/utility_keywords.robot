@@ -65,7 +65,7 @@ Perform Site Visit Steps
     Capture Screenshot
 PTP_Flow
     [Arguments]    ${user}
-    Enter Due Date
+    Enter Due Date    ${user['dueDate']}
     Sleep    2s
     Capture Screenshot
     Input Installment Amount    ${user['InstallmentAmount']}
@@ -80,9 +80,8 @@ PTP_Flow
     Click Save_Btn
     Sleep    5s
     Capture Screenshot
-    #Click Element    //em[text()="Promise To Pay"]/following-sibling::a
-    #Sleep    3s
-    #Capture Screenshot
+    Close PTP_Popups
+    Capture Screenshot
 Log_Out
     Click Logout
     Capture Screenshot
@@ -137,20 +136,14 @@ Click Dispose All Button
     Click Button    //button[@id="disposeAllBtn1"]
 
 Enter disposeDate
-    #${current_datetime}=    Get Current Date    ${DATE_FORMAT}
     ${current_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
     Log    Current date and time: ${current_datetime}
-
-    # Input the current datetime into the input field
     Input Text    //input[@id='disposeDate']    ${current_datetime}
     Click Element    //select[@id="dispositionValue"]
 Enter actionDate
-    #${current_datetime}=    Get Current Date    ${DATE_FORMAT}
     ${action_datetime}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%m-%d-%Y %H:%M:%S')    modules=datetime
     Log    Action date and time: ${action_datetime}
-    # Input the current datetime into the input field
     Input Text    //input[@id='actionDate']    ${action_datetime}
-    #Click Element    //select[@id="dispositionValue"]
 Select Dropdown Value
     [Arguments]    ${dropdown_locator}    ${value}
     Select From List By Value    ${dropdown_locator}    ${value}
@@ -199,11 +192,11 @@ Select Checkbox By Label Text
     Click Element    ${checkbox_xpath}
 
 Enter Due Date
+    [Arguments]    ${element}
     Wait Until Element Is Visible    //input[@id='planDate']    timeout=5
     Click Element    //input[@id='planDate']
-    #Scroll Element Into View    (//td[@data-month="10"]//div[text()="29"])[2]
-    Wait Until Element Is Visible    (//td[@data-date="29"])[last()]    timeout=5
-    Click Element    (//td[@data-date="29"])[last()]
+    Wait Until Element Is Visible    (//td[@data-date="${element}"])[last()]    timeout=5
+    Click Element    (//td[@data-date="${element}"])[last()]
 
 Input Installment Amount
     [Arguments]    ${installmentAmount}
@@ -219,3 +212,5 @@ Click Save_Btn
 Scroll Element Into View
     [Arguments]    ${element}
     Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
+Close PTP_Popups
+    Execute Javascript    document.querySelector('a.mh-cross').click()
