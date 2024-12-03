@@ -22,13 +22,13 @@ def load_test_cases(file_path):
     return list(test_cases)
 
 if __name__ == "__main__":
-    TEST_FILE = "test_login.robot"
-    TEST_DATA_FILE = "D:/New_automation_/web-automation-framework/resources/test_data/test_data.xlsx"
+    TEST_FILE = "NFH_service.robot"
+    TEST_DATA_FILE = "D:/New_automation_/web-automation-framework/resources/test_data/NFH_service.xlsx"
 
     # Load test cases from Excel
     test_cases = load_test_cases(TEST_DATA_FILE)
     print("Available test cases:", test_cases)
 
     # Specify tests to run or leave empty to run all
-    tests_to_run = ["Valid PTP Test 3"]
+    tests_to_run = ["Service Request Change Address"]
     run_tests(TEST_FILE, tests_to_run)
