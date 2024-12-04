@@ -1,7 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
 #Library    ../../libraries/custom_selenium_keywords.py  # Import Python custom keywords
-
+*** Variables ***
+${assignedTo}
+${serviceId}
 *** Keywords ***
 Change Address
 	[Arguments]    ${user}
@@ -33,14 +35,19 @@ Change Address
     Click on Submit Button
     Click Pop_Up_Yes Button
     Sleep    4s
+    Get value of assignedTo
+    Get value of serviceId
+    Sleep    4s
     Perform Logout Steps
     Click Re_Login Button
     Capture Screenshot
-    Input Username    ${user['username2']}
+    Input Username    ${assignedTo}
     Click Login Button
     Click Pop_Up_Yes Button
     Sleep    2s
     Click on Servie Summary
+    Sleep    5s
+    Check Change Address Record Visible
     Sleep    5s
 Wait For Page To Load
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -125,7 +132,7 @@ Click on Update Button
     Capture Screenshot
 
 Choose document
-    Choose File    xpath=//input[@id="documentData" and @type="file"]    C:/Users/akarshit.raj/Pictures/Screenshots/Screenshot (1).png
+    Choose File    xpath=//input[@id="documentData" and @type="file"]    D:/New_automation_/web-automation-framework/tests/selenium-screenshot-1.png
     #Click Element  xpath=//button[@id="upload"]  # Click upload button (if required)
 
 Click on Add Button
@@ -161,3 +168,15 @@ Click on Servie Summary
     Wait Until Element Is Visible    (//a[@class="item-servieSummary"])[1]    timeout=5s
     Click Element    (//a[@class="item-servieSummary"])[1]
     Capture Screenshot
+Get value of assignedTo
+    ${local_value}=    Get Text    //tr[@role="row"][1]/td[7]
+    Set Global Variable    ${assignedTo}    ${local_value}
+Get value of serviceId
+    ${local_value}=    Get Text    //tr[@role="row"][1]/td[1]
+    Set Global Variable    ${serviceId}    ${local_value}
+Check Change Address Record Visible
+    Element Should Be Visible    //tr[@role="row"][1]/td[text()="${serviceId}"]
+    Element Should Be Visible    //tr[@role="row"][1]/td[text()="${assignedTo}"]
+
+
+
