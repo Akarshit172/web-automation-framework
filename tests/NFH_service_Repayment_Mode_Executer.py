@@ -30,5 +30,5 @@ if __name__ == "__main__":
     print("Available test cases:", test_cases)
 
     # Specify tests to run or leave empty to run all
-    tests_to_run = ["Service_Repayment_Mode"]
+    tests_to_run = ["Service_Repayment_Mode_EFT"]
     run_tests(TEST_FILE, tests_to_run)

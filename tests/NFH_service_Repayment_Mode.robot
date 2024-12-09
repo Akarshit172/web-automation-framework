@@ -22,12 +22,22 @@ ${SCREENSHOT_DIR}     screenshots/screenshot
 ${DATE_FORMAT}        %Y-%m-%d_%H-%M-%S
 
 *** Test Cases ***
-Service_Repayment_Mode
+Service_Repayment_Mode_EFT
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
-    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode_EFT
     FOR    ${user}    IN    @{login_data}
-        Repayment_Mode    ${user}
+        Repayment_Mode_EFT    ${user}
+        #Open URL And Verify Repayment Mode    ${user}
+    END
+    #Close Browse
+
+Service_Repayment_Mode_Cash
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode_Cash
+    FOR    ${user}    IN    @{login_data}
+        Repayment_Mode_Cash    ${user}
         #Open URL And Verify Repayment Mode    ${user}
     END
     #Close Browse

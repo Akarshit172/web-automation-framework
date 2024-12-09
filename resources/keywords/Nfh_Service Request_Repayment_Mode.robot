@@ -7,7 +7,7 @@ ${serviceId}
 *** Keywords ***
 
 
-Repayment_Mode
+Repayment_Mode_EFT
 	[Arguments]    ${user}
     Wait For Page To Load
     Capture Screenshot
@@ -76,6 +76,56 @@ Repayment_Mode
     Click On ApproveBtn
     Sleep    5s
     Open URL And Verify Repayment Mode    ${user}
+
+Repayment_Mode_Cash
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Wait For Menu To Load
+    Capture Screenshot
+    Click Menu Button
+    Capture Screenshot
+    Click Repayment Mode
+    Enter Customer ID    ${user['customerID']}
+    Click Search Customer Button
+    Sleep    2s
+    Select Customer Id
+    Sleep    2s
+    Click on OK Button
+    Sleep    5s
+    Select Account Number
+    Sleep    2s
+    Click on Proceed Button
+    Select Repayment Mode    ${user['changeRepaymentMode']}
+    Sleep    2s
+    Choose document
+    Sleep    2s
+    Click on Repayment_Submit
+    Sleep    2s
+    Click Pop_Up_Yes Button
+    Sleep    4s
+    Get value of assignedTo
+    Get value of serviceId
+    Sleep    4s
+    Perform Logout Steps
+    Click Re_Login Button
+    Capture Screenshot
+    Input Username    ${assignedTo}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Sleep    2s
+    Click on Servie Summary
+    Sleep    5s
+    Check Change Address Record Visible
+    Sleep    3s
+    Open ServiceId Request
+    Sleep    3s
+    Click On ApproveBtn
+    Sleep    50s
+    Open URL And Verify Repayment Mode    ${user}
 Wait For Page To Load
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
     Capture Screenshot
@@ -134,8 +184,8 @@ Click Search Customer Button
     Click Element    //button[@id="serviceCustSearch"]
     Capture Screenshot
 Select Customer Id
-    Wait Until Element Is Visible    //input[@id="cifNo1"]    timeout=5s
-    Wait Until Element Is Enabled    //input[@id="cifNo1"]    timeout=50s
+    Wait Until Element Is Visible    //input[@id="cifNo1"]    timeout=50s
+    Wait Until Element Is Enabled    //input[@id="cifNo1"]    timeout=5s
     Click Element    //input[@id="cifNo1"]
     Capture Screenshot
 Click on OK Button
