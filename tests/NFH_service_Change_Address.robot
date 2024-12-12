@@ -30,18 +30,20 @@ Service Request Change Permanent Address
     FOR    ${user}    IN    @{login_data}
         Change Address    ${user}
     END
-    #Close Browser
+    Close Browser
 Service Request Change Mailing Address
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service Request Change Mailing Address
     FOR    ${user}    IN    @{login_data}
-        #Change Address    ${user}
-        Open URL And Verify Change Address   ${user}
+        Change Address    ${user}
+        #Open URL And Verify Change Address   ${user}
     END
-    #Close Browser
+    Close Browser
 
 Service Request Change Present Address
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service Request Change Present Address
@@ -49,8 +51,9 @@ Service Request Change Present Address
         Change Address    ${user}
         #Open URL And Verify Change Address   ${user}
     END
-
+    Close Browser
 Service Request Office Address
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service Request Office Address
@@ -58,19 +61,4 @@ Service Request Office Address
         Change Address    ${user}
         #Open URL And Verify Change Address   ${user}
     END
-Service Request Block_Unblock
-    [Documentation]    Test login using data from Excel
-    Maximize Browser Window
-    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service Request Block_Unblock
-    FOR    ${user}    IN    @{login_data}
-        Block_Unblock    ${user}
-    END
-    #Close Browser
-Service_Repayment_Mode
-    [Documentation]    Test login using data from Excel
-    Maximize Browser Window
-    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode
-    FOR    ${user}    IN    @{login_data}
-        Repayment_Mode    ${user}
-    END
-    #Close Browse
+    Close Browser

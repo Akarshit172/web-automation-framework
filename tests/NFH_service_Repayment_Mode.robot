@@ -13,7 +13,7 @@ Library    Collections
 
 
 Suite Setup    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-#Suite Teardown    Close Browser
+Suite Teardown    Close Browser
 
 *** Variables ***
 ${EXCEL_FILE_PATH}    D:/New_automation_/web-automation-framework/resources/test_data/NFH_service_Repayment_Mode.xlsx
@@ -30,9 +30,10 @@ Service_Repayment_Mode_EFT
         Repayment_Mode_EFT    ${user}
         #Open URL And Verify Repayment Mode    ${user}
     END
-    #Close Browse
+    Close Browser
 
 Service_Repayment_Mode_Cash
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode_Cash
@@ -40,4 +41,15 @@ Service_Repayment_Mode_Cash
         Repayment_Mode_Cash    ${user}
         #Open URL And Verify Repayment Mode    ${user}
     END
-    #Close Browse
+    Close Browser
+
+Service_Repayment_Mode_PDC
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Service_Repayment_Mode_PDC
+    FOR    ${user}    IN    @{login_data}
+        Service_Repayment_Mode_PDC    ${user}
+        #Open URL And Verify Repayment Mode    ${user}
+    END
+    Close Browser

@@ -20,7 +20,6 @@ Change Address
     #Select ID Type    ${user['IdType']}
     Enter Customer ID    ${user['customerID']}
     Click Search Customer Button
-    Sleep    2s
     Select Customer Id
     Sleep    2s
     Click on OK Button
@@ -86,7 +85,6 @@ Block_Unblock
     Click Search Customer Button
     Sleep    4s
     Select Customer Id
-    Sleep    2s
     Click on OK Button
     Sleep    4s
     Select Account Number
@@ -101,7 +99,6 @@ Block_Unblock
     Sleep    2s
     Click on Submit Button
     Click Pop_Up_Yes Button
-    Sleep    4s
     Get value of assignedTo
     Get value of serviceId
     Sleep    4s
@@ -121,51 +118,6 @@ Block_Unblock
     Click On ApproveBtn
     Sleep    3s
 
-Repayment_Mode
-	[Arguments]    ${user}
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Wait For Menu To Load
-    Capture Screenshot
-    Click Menu Button
-    Capture Screenshot
-    Click Repayment Mode
-    Enter Customer ID    ${user['customerID']}
-    Click Search Customer Button
-    Sleep    2s
-    Select Customer Id
-    Sleep    2s
-    Click on OK Button
-    Sleep    5s
-    Select Account Number
-    Sleep    2s
-    Click on Proceed Button
-    Select Change Repayment Mode    ${user['changeRepaymentMode']}
-    Sleep    2s
-    Click on Repayment_Submit
-    Click Pop_Up_Yes Button
-    Sleep    4s
-    Get value of assignedTo
-    Get value of serviceId
-    Sleep    4s
-    Perform Logout Steps
-    Click Re_Login Button
-    Capture Screenshot
-    Input Username    ${assignedTo}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Sleep    2s
-    Click on Servie Summary
-    Sleep    5s
-    Check Change Address Record Visible
-    Sleep    3s
-    Open ServiceId Request
-    Sleep    3s
-    Click On ApproveBtn
-    Sleep    5s
 
 Wait For Page To Load
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -316,6 +268,7 @@ Click on Servie Summary
     Click Element    (//a[@class="item-servieSummary"])[1]
     Capture Screenshot
 Get value of assignedTo
+    Wait Until Element Is Visible    //tr[@role="row"][1]/td[7]    timeout=10s
     ${local_value}=    Get Text    //tr[@role="row"][1]/td[7]
     Set Global Variable    ${assignedTo}    ${local_value}
 Get value of serviceId
@@ -372,7 +325,7 @@ Open URL And Verify Change Address
     [Arguments]    ${user}
     Close Browser
     Sleep    2s
-    Open Browser    http://172.21.0.42:8091/Kiya.aiCBS-10.2.0    chrome
+    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0    chrome
     Sleep    3s
     Maximize Browser Window
     Input Username    ${user['username2']}
@@ -380,13 +333,16 @@ Open URL And Verify Change Address
     Input Password    ${user['password']}
     Sleep    1s
     Click Login Button
+    Wait Until Element Is Visible    //a[@data-original-title="Menu"]    timeout=10s
+    Click Element    //a[@data-original-title="Menu"]
     Sleep    1s
-    Click Element    (//em[text()="Customer360 Information"])[1]
+    Wait Until Element Is Visible    //li[@id="CUST360"]    timeout=10s
+    Click Element    //li[@id="CUST360"]
     Sleep    1s
     Input Text    //input[@id="cust360SearchId"]    ${user['customerID']}
     Sleep    1s
     Click Button    //button[@id="cust360F2"]
-    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=10s
+    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=20s
     Click on Account Details Tab
     Sleep    2s
     Click On Address Details

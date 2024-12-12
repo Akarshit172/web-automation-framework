@@ -74,7 +74,7 @@ Repayment_Mode_EFT
     Open ServiceId Request
     Sleep    3s
     Click On ApproveBtn
-    Sleep    5s
+    Sleep    10s
     Open URL And Verify Repayment Mode    ${user}
 
 Repayment_Mode_Cash
@@ -100,7 +100,13 @@ Repayment_Mode_Cash
     Sleep    2s
     Click on Proceed Button
     Select Repayment Mode    ${user['changeRepaymentMode']}
-    Sleep    2s
+    Wait Until Element Is Visible    xpath=//a[@id="DeactivateEftHyperlInk"]    timeout=10s
+    Click Element    xpath=//a[@id="DeactivateEftHyperlInk"]
+    Wait Until Element Is Visible    xpath=//button[@id="fetchEFTDetails"]    timeout=10s
+    Click Element    xpath=//button[@id="fetchEFTDetails"]
+    Wait Until Element Is Visible    xpath=//input[@type="checkbox"]    timeout=10s
+    ${checkbox_present}=    Run Keyword And Return Status    Element Exists    xpath=//input[@type="checkbox"]
+    Run Keyword If    '${checkbox_present}' == 'True'    Click Element    xpath=//input[@type="checkbox"]
     Choose document
     Sleep    2s
     Click on Repayment_Submit
@@ -124,7 +130,67 @@ Repayment_Mode_Cash
     Open ServiceId Request
     Sleep    3s
     Click On ApproveBtn
-    Sleep    50s
+    Sleep    10s
+    Open URL And Verify Repayment Mode    ${user}
+
+Service_Repayment_Mode_PDC
+    [Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Wait For Menu To Load
+    Capture Screenshot
+    Click Menu Button
+    Capture Screenshot
+    Click Repayment Mode
+    Enter Customer ID    ${user['customerID']}
+    Click Search Customer Button
+    Sleep    2s
+    Select Customer Id
+    Sleep    2s
+    Click on OK Button
+    Sleep    5s
+    Select Account Number
+    Sleep    2s
+    Click on Proceed Button
+    Select Repayment Mode    ${user['changeRepaymentMode']}
+    Wait Until Element Is Visible    xpath=//a[@id="newPDCDivHyperlink"]    timeout=10s
+    Click Element    xpath=//a[@id="newPDCDivHyperlink"]
+    Select PDC Bank    ${user['PDCBank']}
+    Enter PDC Bank Account Number    ${user['bankAccountNumber']}
+    Enter Deposit Account Number    ${user['depositAccountNumber']}
+    Enter PDC Start Date    ${user['PDCStartDate']}
+    Enter Starting PDC No    ${user['StartingPDCNo']}
+    Enter No of PDC    ${user['noOfPDC']}
+    Sleep    2s
+    Click Element    //input[@id="pdcEndNo"]
+    Click Element    //button[@id="addbtn"]
+    #Click on Add Button
+    Choose document
+    Click on Repayment_Submit
+    Sleep    2s
+    Click Pop_Up_Yes Button
+    Sleep    4s
+    Get value of assignedTo
+    Get value of serviceId
+    Sleep    4s
+    Perform Logout Steps
+    Click Re_Login Button
+    Capture Screenshot
+    Input Username    ${assignedTo}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Sleep    2s
+    Click on Servie Summary
+    Sleep    5s
+    Check Change Address Record Visible
+    Sleep    3s
+    Open ServiceId Request
+    Sleep    3s
+    Click On ApproveBtn
+    Sleep    10s
     Open URL And Verify Repayment Mode    ${user}
 Wait For Page To Load
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -144,7 +210,9 @@ Capture Screenshot
     ${timestamp}=    Evaluate    (datetime.datetime.now()).strftime('%Y-%m-%d_%H-%M-%S')    modules=datetime
     ${filename}=    Catenate    ${SCREENSHOT_DIR}_${timestamp}.png
     Capture Page Screenshot    ${filename}
-
+Scroll Element Into View
+    [Arguments]    ${element_xpath}
+    Execute Javascript    arguments[0].scrollIntoView(true);    ${element_xpath}
 Click Menu Button
     Click Element    //a[@class='item-nav']
     Capture Screenshot
@@ -196,6 +264,7 @@ Click on OK Button
 Select Account Number
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
     Wait Until Element Is Enabled    //input[@id="accountNumber1"]    timeout=50s
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
     Click Element    //input[@id="accountNumber1"]
     Capture Screenshot
 Click on Proceed Button
@@ -277,6 +346,7 @@ Click on Servie Summary
     Click Element    (//a[@class="item-servieSummary"])[1]
     Capture Screenshot
 Get value of assignedTo
+    Wait Until Element Is Visible    //tr[@role="row"][1]/td[7]    timeout=50s
     ${local_value}=    Get Text    //tr[@role="row"][1]/td[7]
     Set Global Variable    ${assignedTo}    ${local_value}
 Get value of serviceId
@@ -321,6 +391,7 @@ Select Change Repayment Mode
 Click on Repayment_Submit
     Sleep    2s
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
+    #Scroll Element Into View    //button[@id="repaymentSubmit"]
     Wait Until Element Is Enabled    //button[@id="repaymentSubmit"]    timeout=5s
     Click Button    //button[@id="repaymentSubmit"]
     Capture Screenshot
@@ -331,38 +402,13 @@ Here’s how you can create a Robot Framework keyword to open a URL dynamically 
 Keyword Implementation
 robot
 Copy code
-Open URL And Verify Change Address
-    [Arguments]    ${user}
-    Close Browser
-    Sleep    2s
-    Open Browser    http://172.21.0.42:8091/Kiya.aiCBS-10.2.0    chrome
-    Sleep    3s
-    Maximize Browser Window
-    Input Username    ${user['username2']}
-    Sleep    1s
-    Input Password    ${user['password']}
-    Sleep    1s
-    Click Login Button
-    Sleep    1s
-    Click Element    (//em[text()="Customer360 Information"])[1]
-    Sleep    1s
-    Input Text    //input[@id="cust360SearchId"]    ${user['customerID']}
-    Sleep    1s
-    Click Button    //button[@id="cust360F2"]
-    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=10s
-    Click on Account Details Tab
-    Sleep    2s
-    Click On Address Details
-    Sleep    2s
-    Verify Change Address Detail    ${user}
-    Sleep    2s
-    [Teardown]    Close Browser
+
 
 Open URL And Verify Repayment Mode
     [Arguments]    ${user}
     Close Browser
     Sleep    2s
-    Open Browser    http://172.21.0.42:8091/Kiya.aiCBS-10.2.0    chrome
+    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0    chrome
     Sleep    3s
     Maximize Browser Window
     Input Username    ${user['username2']}
@@ -370,13 +416,16 @@ Open URL And Verify Repayment Mode
     Input Password    ${user['password']}
     Sleep    1s
     Click Login Button
+    Wait Until Element Is Visible    //a[@data-original-title="Menu"]    timeout=10s
+    Click Element    //a[@data-original-title="Menu"]
     Sleep    1s
-    Click Element    (//em[text()="Customer360 Information"])[1]
+    Wait Until Element Is Visible    //li[@id="CUST360"]    timeout=10s
+    Click Element    //li[@id="CUST360"]
     Sleep    1s
     Input Text    //input[@id="cust360SearchId"]    ${user['customerID']}
     Sleep    1s
     Click Button    //button[@id="cust360F2"]
-    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=10s
+    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=20s
     Click On Account Details    ${user['repayment_Mode']}
 
 Click On Address Details
@@ -486,6 +535,38 @@ Click On Account Details
     ${Actual_Repayment_Mode}=    Get Text    //h6[text()="Repayment Mode"]/following-sibling::label
     ${Expected_Repayment_Mode}=     Set Variable    ${value}
      Run Keyword If    '${Actual_Repayment_Mode}' == '${Expected_Repayment_Mode}'    Log To Console    Repayment_Mode is same.
-     Run Keyword If    '${Actual_Repayment_Mode}' != '${Expected_Repayment_Mode}'    Fail    Repayment_Mode is different. Expected: ${Block}, Actual: ${blockCode}'.
+     Run Keyword If    '${Actual_Repayment_Mode}' != '${Expected_Repayment_Mode}'    Fail    Repayment_Mode is different. Expected: ${Actual_Repayment_Mode}, Actual: ${Expected_Repayment_Mode}'.
      Capture Screenshot
+    Capture Screenshot
+
+Select PDC Bank
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="pdcBank"]    timeout=5s
+    Select From List By Value    //select[@id="pdcBank"]    ${value}
+    Capture Screenshot
+Enter PDC Bank Account Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="pdcBankAccountNumber"]    timeout=5s
+    Input Text    //input[@id="pdcBankAccountNumber"]    ${value}
+    Capture Screenshot
+Enter Deposit Account Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="depositBankNumber"]    timeout=5s
+    Input Text    //input[@id="depositBankNumber"]    ${value}
+    Capture Screenshot
+Enter PDC Start Date
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="pdcStartDate"]    timeout=5s
+    Input Text    //input[@id="pdcStartDate"]    ${value}
+    Capture Screenshot
+Enter Starting PDC No
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="pdcStartNo"]    timeout=5s
+    Input Text    //input[@id="pdcStartNo"]    ${value}
+    Capture Screenshot
+
+Enter No of PDC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="pdcNos"]    timeout=5s
+    Input Text    //input[@id="pdcNos"]    ${value}
     Capture Screenshot
