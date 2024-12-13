@@ -321,7 +321,8 @@ Here’s how you can create a Robot Framework keyword to open a URL dynamically 
 Keyword Implementation
 robot
 Copy code
-Open URL And Verify Change Address
+
+Open URL And Verify Repayment Mode
     [Arguments]    ${user}
     Close Browser
     Sleep    2s
@@ -354,7 +355,7 @@ Open URL And Verify Change Address
 Click on Account Details Tab
     Wait Until Element Is Visible    //button[@id="acctDetails"]    timeout=10s
     Click Button    //button[@id="acctDetails"]
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 
 Click On Address Details
