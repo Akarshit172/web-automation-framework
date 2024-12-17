@@ -60,14 +60,71 @@ Lead_Creation_KYC
     Select Nationality    ${user['Nationality']}
     Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
     Select educationLevel    ${user['EducationLevel']}
-    Enter Dob    ${user['DateOfBirth']}
+    Sleep    5s
+    #Enter Dob    ${user['DateOfBirth']}
+    Select Date From Date Picker    ${user['DateOfBirth']}
+    Sleep    5s
     Select educationLevel    ${user['EducationLevel']}
     Select Marital Status    ${user['MaritalStatus']}
     Enter No Of Dependents    ${user['NoOfDependents']}
     Select Returned Cheques    ${user['ReturnedCheques']}
     Select Cheque Abuser List    ${user['ChequeAbuserList']}
     Click on Save Basic
+    Sleep    5s
+    Address Details    ${user}
+    Identification Details    ${user}
+Address Details
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Sleep    3s
+    Maximize Browser Window
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Detail Data Entry
+    Click on KYC
+    Click Address Details
+    Select Address Type    ${user['addressType']}
+    Select Property ownership    ${user['PropertyOwnership']}
+    Enter Address Line1    ${user['addressLine1']}
+    Enter flat    ${user['flat']}
+    Enter Building    ${user['building']}
+    Enter Avenue    ${user['avenue']}
+    Select Block    ${user['Block']}
+    Select Country    ${user['Country']}
+    Select City_Area    ${user['City_Area']}
+    Click Is PermantAdd
+    Click on Save Address
 
+Identification Details
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Sleep    3s
+    Maximize Browser Window
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Detail Data Entry
+    Click on KYC
+    Click Identification Details
+    Click on Edit Icon
+    Click Identification Details
+    Enter Issue Date    ${user['issueDate']}
+    Enter Expiry Date    ${user['expiryDate']}
+    Select Renewal Under Process    ${user['renewalUnderProcess']}
+    Click on Save Identy
 Wait For Page To Load
 	Log    Wait Until Element Is Visible
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -260,14 +317,12 @@ Scroll Element Into View
 
 
 Click on Edit Icon
-
     Sleep    5s
-    Execute Javascript    window.scrollBy(0, 300);
+    Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBasicDetailsFrame"]
-    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"]     timeout=10s
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
     Sleep    3s
-    Click Element    //a[@class='btn sm btn-info px-1 py-0 editBtn']
-    #Execute JavaScript    document.evaluate("//a[@class='btn sm btn-info px-1 py-0 editBtn']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
     Capture Screenshot
     Sleep    3s
 
@@ -322,6 +377,7 @@ Enter Dob
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="dob"]    timeout=5s
     Log    Enter Date of birth..
+    Clear Element Text    //input[@id="dob"]
     Input Text    //input[@id="dob"]    ${value}
     Capture Screenshot
 
@@ -355,4 +411,159 @@ Click on Save Basic
     Sleep    2s
     Click Button    //button[@id="saveBasic"]
     Capture Screenshot
+    #Select Frame    main
+    Execute JavaScript    window.top.focus();
+    #Execute JavaScript    window.scrollTo(0, 0)
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+Select Date From Date Picker
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="dob"]    timeout=5s
+    Click Date Picker    //input[@id="dob"]    ${value}
+    Capture Screenshot
+Click Date Picker
+    [Arguments]    ${date_input}    ${date}
+    Click Element    ${date_input}  # Click the input field to open the date picker
+    Wait Until Element Is Visible    //table[@class='ui-datepicker-calendar']  # Wait until the date picker is visible
+    ${day}    Get Date Day    ${date}
+    ${month}    Get Date Month    ${date}
+    ${year}    Get Date Year    ${date}
+    Select Date Year    ${year}
+    Select Date Month    ${month}
+    Select Date Day    ${day}
 
+Select Date Year
+    [Arguments]    ${year}
+    # Modify this to fit your date picker
+    Click Element    //select[@class='ui-datepicker-year']/option[text()='${year}']  # Example for year dropdown
+
+Select Date Month
+    [Arguments]    ${month}
+    # Modify this to fit your date picker
+    ${month}    Evaluate    int('${month}') - 1
+    Click Element    //select[@class='ui-datepicker-month']/option[@value='${month}']  # Example for month dropdown
+
+Select Date Day
+    [Arguments]    ${day}
+    # Modify this to fit your date picker
+    Click Element    //td[@data-handler="selectDay"]/a[text()='${day}']  # Click the day of the month in the calendar
+
+Get Date Day
+    [Arguments]    ${date}
+    ${day}    Evaluate    '${date}'.split('-')[0]    # Splitting 'DD-MM-YYYY'
+    [Return]    ${day}
+
+Get Date Month
+    [Arguments]    ${date}
+    ${month}    Evaluate    '${date}'.split('-')[1]    # Splitting 'DD-MM-YYYY'
+    [Return]    ${month}
+
+Get Date Year
+    [Arguments]    ${date}
+    ${year}    Evaluate    '${date}'.split('-')[2]    # Splitting 'DD-MM-YYYY'
+    [Return]    ${year}
+Click Address Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Address Details")]]    timeout=10s
+    Log    Clicking on Address Details
+    Click Element    //li[a[contains(text(),"Address Details")]]
+    Capture Screenshot
+Select Address Type
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 350);
+    Select Frame    //iframe[@id="viewAddressDetailsFrame"]
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="addressType"]     timeout=10s
+    Select From List By Value    //select[@id="addressType"]    ${value}
+
+Select Property ownership
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="proptyOwshp"]     timeout=10s
+    Select From List By Value    //select[@id="proptyOwshp"]    ${value}
+Enter Address Line1
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="addressLine1"]    timeout=5s
+    Log    Enter Address Line1
+    Input Text    //input[@id="addressLine1"]    ${value}
+    Capture Screenshot
+
+Enter flat
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="flatOrVilla"]    timeout=5s
+    Log    Enter flat
+    Input Text    //input[@id="flatOrVilla"]    ${value}
+    Capture Screenshot
+
+Enter Building
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="building"]    timeout=5s
+    Log    Enter flat
+    Input Text    //input[@id="building"]    ${value}
+    Capture Screenshot
+
+Enter Avenue
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="avenue"]    timeout=5s
+    Log    Enter avenue
+    Input Text    //input[@id="avenue"]    ${value}
+    Capture Screenshot
+
+Select Block
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="pinCode"]     timeout=10s
+    Select From List By Value    //select[@id="pinCode"]    ${value}
+Select Country
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="country"]     timeout=10s
+    Select From List By Value    //select[@id="country"]    ${value}
+Select City_Area
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="state"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="state"]    ${value}
+Click Is PermantAdd
+    Wait Until Element Is Visible    //input[@id="isPermantAdd"]    timeout=10s
+    Log    Clicking Is PermantAdd Checkbox
+    Click Element    //input[@id="isPermantAdd"]
+    Capture Screenshot
+Click on Save Address
+    Wait Until Element Is Visible    //button[@id="saveAddr"]   timeout=10s
+    Log    Clicking on Save Address Button
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
+    Sleep    2s
+    Click Button    //button[@id="saveAddr"]
+    Sleep    5s
+    Capture Screenshot
+Click Identification Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Identification Details")]]    timeout=10s
+    Log    Clicking on Identification Details
+    Click Element    //li[a[contains(text(),"Identification Details")]]
+    Capture Screenshot
+Enter Issue Date
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="issueDate"]    timeout=5s
+    Log    Enter Issue Date
+    Input Text    //input[@id="issueDate"]    ${value}
+    Capture Screenshot
+Enter Expiry Date
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="expiryDate"]    timeout=5s
+    Log    Expiry Date
+    Input Text    //input[@id="expiryDate"]    ${value}
+    Capture Screenshot
+Select Renewal Under Process
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="renewalUnderProcess"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="renewalUnderProcess"]    ${value}
+Click on Save Identy
+    Wait Until Element Is Visible    //button[@id="saveIdenty"]   timeout=10s
+    Log    Clicking on Save Address Button
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
+    Sleep    2s
+    Click Button    //button[@id="saveIdenty"]
+    Sleep    5s
+    Capture Screenshot
