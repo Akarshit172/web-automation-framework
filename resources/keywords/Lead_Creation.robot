@@ -73,6 +73,7 @@ Lead_Creation_KYC
     Sleep    5s
     Address Details    ${user}
     Identification Details    ${user}
+    Employment Details    ${user}
 Address Details
     [Arguments]    ${user}
     Close Browser
@@ -119,12 +120,35 @@ Identification Details
     Click on Detail Data Entry
     Click on KYC
     Click Identification Details
-    Click on Edit Icon
-    Click Identification Details
+    Click on Edit Icon IdentifiDetails
+    #Click Identification Details
     Enter Issue Date    ${user['issueDate']}
     Enter Expiry Date    ${user['expiryDate']}
     Select Renewal Under Process    ${user['renewalUnderProcess']}
     Click on Save Identy
+Employment Details
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Sleep    3s
+    Maximize Browser Window
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Detail Data Entry
+    Click on KYC
+    Click Employment Details
+    Select Nature of Emplmt    ${user['natureOfEmplmt']}
+    Select Income Type    ${user['incomeType']}
+    Enter Income Amt    ${user['incomeType']}
+    Click on Add Income
+    Sleep    5s
+
 Wait For Page To Load
 	Log    Wait Until Element Is Visible
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -320,6 +344,15 @@ Click on Edit Icon
     Sleep    5s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBasicDetailsFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+    Sleep    3s
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+    Capture Screenshot
+    Sleep    3s
+Click on Edit Icon IdentifiDetails
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewIdentifiDetailsIdFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
     Sleep    3s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
@@ -567,3 +600,38 @@ Click on Save Identy
     Click Button    //button[@id="saveIdenty"]
     Sleep    5s
     Capture Screenshot
+Click Employment Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Employment Details")]]    timeout=10s
+    Log    Clicking on Identification Details
+    Click Element    //li[a[contains(text(),"Employment Details")]]
+    Capture Screenshot
+
+Select Nature of Emplmt
+    [Arguments]    ${value}
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewemploymentIdFrame"]
+    Wait Until Element Is Visible    //select[@id="natureOfEmplmt"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="natureOfEmplmt"]    ${value}
+Select Income Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="incomeType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="incomeType"]    ${value}
+Enter Income Amt
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="incomeAmt_txt"]    timeout=5s
+    Log    Income Amt
+    Input Text    //input[@id="incomeAmt_txt"]    ${value}
+    Capture Screenshot
+Click on Add Income
+    Wait Until Element Is Visible    //button[@id="addIncomebt"]    timeout=10s
+    Log    Clicking on Ad Button
+    Sleep    2s
+    Click Button    //button[@id="addIncomebt"]
+    Sleep    2s
+    Capture Screenshot
+
+
