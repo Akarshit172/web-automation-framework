@@ -74,6 +74,7 @@ Lead_Creation_KYC
     Address Details    ${user}
     Identification Details    ${user}
     Employment Details    ${user}
+    Bank Details    ${user}
 Address Details
     [Arguments]    ${user}
     Close Browser
@@ -148,7 +149,27 @@ Employment Details
     Enter Income Amt    ${user['incomeType']}
     Click on Add Income
     Sleep    5s
-
+Bank Details
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Sleep    3s
+    Maximize Browser Window
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Detail Data Entry
+    Click on KYC
+    Click Bank Details
+    Select Bank Name	${user['bankName']}
+    Enter Account Number	${user['accountNumber']}
+    Enter IBAN Number	${user['ibanNumber']}
+    Click on Save Bank
 Wait For Page To Load
 	Log    Wait Until Element Is Visible
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -604,7 +625,7 @@ Click Employment Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Employment Details")]]    timeout=10s
-    Log    Clicking on Identification Details
+    Log    Clicking on Employment Details
     Click Element    //li[a[contains(text(),"Employment Details")]]
     Capture Screenshot
 
@@ -633,5 +654,37 @@ Click on Add Income
     Click Button    //button[@id="addIncomebt"]
     Sleep    2s
     Capture Screenshot
-
-
+Click Bank Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Bank Details")]]    timeout=10s
+    Log    Clicking on Identification Details
+    Click Element    //li[a[contains(text(),"Bank Details")]]
+    Capture Screenshot
+Select Bank Name
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewBankDetailsFrame"]
+    Wait Until Element Is Visible    //select[@id="bankName"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="bankName"]    ${value}
+Enter Account Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="accountNumber"]    timeout=5s
+    Log    Account Number
+    Input Text    //input[@id="accountNumber"]    ${value}
+    Capture Screenshot
+Enter IBAN Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="ibanNumber"]    timeout=5s
+    Log    IBAN Number
+    Input Text    //input[@id="ibanNumber"]    ${value}
+    Capture Screenshot
+Click on Save Bank
+    Wait Until Element Is Visible    //button[@id="saveBank"]     timeout=10s
+    Log    Clicking on Save Bank
+    Sleep    2s
+    Click Button    //button[@id="saveBank"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
