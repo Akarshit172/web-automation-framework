@@ -28,7 +28,7 @@ Lead_Creation_CPR
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR
 
     FOR    ${user}    IN    @{login_data}
-        #Lead_Creation_flow    ${user}
-        Lead_Creation_KYC    ${user}
+        Lead_Creation_flow    ${user}
+        #Lead_Creation_KYC    ${user}
     END
     Close Browser

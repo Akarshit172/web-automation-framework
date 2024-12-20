@@ -35,23 +35,45 @@ Lead_Creation_flow
     Click on Pull    ${user['IDNumber']}
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
-    Select ID Type    ${user['IDType']}
-    Enter ID Number    ${user['IDNumber']}
+    Lead_Creation_KYC    ${user}
+    Lead_Creation_Product_Details    ${user}
+
+    #Select ID Type    ${user['IDType']}
+    #Enter ID Number    ${user['IDNumber']}
 
 Lead_Creation_KYC
     [Arguments]    ${user}
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
     Click on KYC
+    Basic Details    ${user}
+    Address Details    ${user}
+    Identification Details    ${user}
+    Employment Details    ${user}
+    Bank Details    ${user}
+    Contact Details    ${user}
+    #Lead_Creation_Product_Details    ${user}
+Lead_Creation_Product_Details
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Product Details
+
+Basic Details
+    [Arguments]    ${user}
     Click on Edit Icon
-    #Select ID Type    ${user['IDType']}
-    #Enter ID Number    ${user['IDNumber']}
     Select Applicant Type    ${user['ApplicantType']}
     Enter Email Id    ${user['email']}
     Select Source Of Income    ${user['ApplicantType']}
@@ -60,8 +82,6 @@ Lead_Creation_KYC
     Select Nationality    ${user['Nationality']}
     Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
     Select educationLevel    ${user['EducationLevel']}
-    Sleep    5s
-    #Enter Dob    ${user['DateOfBirth']}
     Select Date From Date Picker    ${user['DateOfBirth']}
     Sleep    5s
     Select educationLevel    ${user['EducationLevel']}
@@ -70,27 +90,8 @@ Lead_Creation_KYC
     Select Returned Cheques    ${user['ReturnedCheques']}
     Select Cheque Abuser List    ${user['ChequeAbuserList']}
     Click on Save Basic
-    Sleep    5s
-    Address Details    ${user}
-    Identification Details    ${user}
-    Employment Details    ${user}
-    Bank Details    ${user}
 Address Details
     [Arguments]    ${user}
-    Close Browser
-    Sleep    2s
-    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-    Sleep    3s
-    Maximize Browser Window
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
-    Click on KYC
     Click Address Details
     Select Address Type    ${user['addressType']}
     Select Property ownership    ${user['PropertyOwnership']}
@@ -106,20 +107,6 @@ Address Details
 
 Identification Details
     [Arguments]    ${user}
-    Close Browser
-    Sleep    2s
-    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-    Sleep    3s
-    Maximize Browser Window
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
-    Click on KYC
     Click Identification Details
     Click on Edit Icon IdentifiDetails
     #Click Identification Details
@@ -129,20 +116,6 @@ Identification Details
     Click on Save Identy
 Employment Details
     [Arguments]    ${user}
-    Close Browser
-    Sleep    2s
-    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-    Sleep    3s
-    Maximize Browser Window
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
-    Click on KYC
     Click Employment Details
     Select Nature of Emplmt    ${user['natureOfEmplmt']}
     Select Income Type    ${user['incomeType']}
@@ -151,25 +124,22 @@ Employment Details
     Sleep    5s
 Bank Details
     [Arguments]    ${user}
-    Close Browser
-    Sleep    2s
-    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-    Sleep    3s
-    Maximize Browser Window
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
-    Click on KYC
     Click Bank Details
     Select Bank Name	${user['bankName']}
     Enter Account Number	${user['accountNumber']}
     Enter IBAN Number	${user['ibanNumber']}
     Click on Save Bank
+Contact Details
+    [Arguments]    ${user}
+    Click Contact Details
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewReferenceDetailsFrame"]
+    Select Customer Type    ${user['CustomerTypeContactDetails']}
+    Select Contact Type    ${user['ContactType']}
+    Enter Contact Number    ${user['MobileNumber']}
+    Select Status    ${user['Contact_status']}
+    Click on Save Contact Details
+
 Wait For Page To Load
 	Log    Wait Until Element Is Visible
     Wait Until Element Is Visible    //input[@id='loginId']    timeout=10s
@@ -347,11 +317,8 @@ Click on Detail Data Entry
 Click on KYC
     Wait Until Element Is Visible    //a[contains(text(), 'KYC')]    timeout=10s
     Log    Clicking on KYC
-    #Scroll Element Into View    //a[contains(text(), 'Detail Data Entry')]
     Sleep    2s
-    #Click Element    //a[contains(text(), 'Detail Data Entry')]
     Execute JavaScript    document.evaluate("//a[contains(text(), 'KYC')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
     Sleep    2s
     Capture Screenshot
 
@@ -465,11 +432,10 @@ Click on Save Basic
     Sleep    2s
     Click Button    //button[@id="saveBasic"]
     Capture Screenshot
-    #Select Frame    main
     Execute JavaScript    window.top.focus();
-    #Execute JavaScript    window.scrollTo(0, 0)
     Execute JavaScript    window.top.scrollTo(0, 0)
     Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
 Select Date From Date Picker
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="dob"]    timeout=5s
@@ -589,6 +555,10 @@ Click on Save Address
     Click Button    //button[@id="saveAddr"]
     Sleep    5s
     Capture Screenshot
+	Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
 Click Identification Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
@@ -621,6 +591,10 @@ Click on Save Identy
     Click Button    //button[@id="saveIdenty"]
     Sleep    5s
     Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
 Click Employment Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
@@ -654,6 +628,10 @@ Click on Add Income
     Click Button    //button[@id="addIncomebt"]
     Sleep    2s
     Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
 Click Bank Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
@@ -688,3 +666,52 @@ Click on Save Bank
     Click Button    //button[@id="saveBank"]
     Capture Screenshot
     Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+
+Click Contact Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Contact Details")]]    timeout=10s
+    Log    Clicking on Contact Details
+    Click Element    //li[a[contains(text(),"Contact Details")]]
+    Capture Screenshot
+Select Contact Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="contactType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="contactType"]    ${value}
+
+Enter Contact Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="contactNumber"]    timeout=5s
+    Log    Contact Number
+    Input Text    //input[@id="contactNumber"]    ${value}
+    Capture Screenshot
+Select Status
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="status"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="status"]    ${value}
+Click on Save Contact Details
+    Wait Until Element Is Visible    //button[@id="referanceSave"]     timeout=10s
+    Log    Clicking on Save Bank
+    Sleep    2s
+    Click Button    //button[@id="referanceSave"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+
+Click on Product Details
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Product Details')]    timeout=10s
+    Log    Clicking on Product Details
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Product Details')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
