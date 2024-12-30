@@ -35,9 +35,9 @@ Perform Site Visit Steps
     Capture Screenshot
     Click PRE LIQUIDATED CASES
     Capture Screenshot
-    Select Arab National Bank
+    #Select Arab National Bank
     Capture Screenshot
-    Click RuleName    ${user['ruleName']}
+    #Click RuleName    ${user['ruleName']}
     Sleep    4s
     Capture Screenshot
     Click On CR    ${user['CR']}

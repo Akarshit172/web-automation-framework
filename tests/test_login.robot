@@ -51,3 +51,6 @@ Valid PTP Test 3
         Log_Out
     END
     #Close Browser
+
+*** Teardown ***
+Close Browser

@@ -36,7 +36,11 @@ Lead_Creation_flow
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
     Lead_Creation_KYC    ${user}
-    Lead_Creation_Product_Details    ${user}
+#    Lead_Creation_Product_Details    ${user}
+#    Lead_Creation_Loan Details    ${user}
+#    Lead_Creation_Repayment_Mode    ${user}
+#    Lead_Creation_Customer_Document    ${user}
+#    Lead_Creation_Policy_Review    ${user}
 
     #Select ID Type    ${user['IDType']}
     #Enter ID Number    ${user['IDNumber']}
@@ -58,7 +62,11 @@ Lead_Creation_KYC
     Employment Details    ${user}
     Bank Details    ${user}
     Contact Details    ${user}
-    #Lead_Creation_Product_Details    ${user}
+    Lead_Creation_Product_Details    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
 Lead_Creation_Product_Details
     [Arguments]    ${user}
 #    Wait For Page To Load
@@ -70,7 +78,152 @@ Lead_Creation_Product_Details
 #    Click on Lead    ${user['IDNumber']}
 #    Click on Detail Data Entry
     Click on Product Details
+    Select Record Available With NFH	${user['regWithNfh']}
+    Select Purchase Type	${user['vehPurchaseType']}
+    Select Hire Purchase	${user['hirePurchase']}
+    Select Vehicle Owner	${user['isApplicantOwner']}
+    Select Security Type	${user['isPrimrySecurity']}
+    Select Vehicle Dealer	${user['vehDealer']}
+    Select Dealer Salesman	${user['dealerSaleman']}
+    Select Vehicle Category	${user['vehCat']}
+    Select Vehicle maker	${user['vehMaker']}
+    Select Vehicle Model	${user['vehModel']}
+    Select Vehicle Model Category	${user['vehModelCat']}
+    Select Country of Manufacture	${user['manufactureCountry']}
+    Select Colour	${user['colour']}
+    Select Year Of Manufacture    ${user['manufactureYear']}
+    Enter Vehicle Price    ${user['vehiclePrice_txt']}
+    Enter Down Payment    ${user['downPaymentPer_txt']}
+    Enter Initial Payment To NFH    ${user['initialPaymt_txt']}
+    Enter Actual Vehicle Price    ${user['actVehiclePrice_txt']}
+    Enter Admin Fees    ${user['adminCharge_txt']}
+    #Enter Vat on Admin Fees    ${user['adminVat']}
+    #Enter Admin Fees Including VAT    ${user['adminChagreWithVat_txt']}
+    Select Admin Fees Payment Mode    ${user['modeOfPayment']}
+    Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
+    Click on Save Collateral
 
+Lead_Creation_Valuation Details
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Valuation Details
+    Select Collateral Type	${user['collateralType']}
+    Select Collateral SubType	${user['collateralSubType']}
+    Select Valuator Name	${user['valuatorName']}
+    Enter Other Valuator Name	${user['otherValuatorName']}
+    Enter Estimated ValuationAmt	${user['estimatedValuationAmt_txt']}
+    Enter Final ValuationAmt	${user['finalValuationAmt_txt']}
+    Enter Valuation Date	${user['valuationDate']}
+    Select Vehicle Category    ${user['vehCat']}
+    Select Vehicle Maker    ${user['vehMaker']}
+    Select Vehicle Model    ${user['vehModel']}
+    Select Vehicle Model Category    ${user['vehModelCat']}
+    Enter year    ${user['manufactureYear']}
+    Enter Chassis No    ${user['chassisNo']}
+    Enter Registration No    ${user['registrationNo']}
+    Enter Engine Capacity    ${user['engineCapacity']}
+    Enter Mileage    ${user['mileage']}
+    Enter Cylinder    ${user['cylinder']}
+    Enter Color    ${user['color']}
+    Enter Insurance Type    ${user['insuranceType']}
+    Select Vehicle Condition    ${user['vehicleCondition']}
+    Select Exterior Condition    ${user['exteriorCondition']}
+    Select Interior Condition    ${user['interiorCondition']}
+    Select Tyre Condition    ${user['tyreCondition']}
+    Select Engine Condition    ${user['engineCondition']}
+    Select Gear Box    ${user['gearBox']}
+    Select Suspension    ${user['suspension']}
+    Select InteriorType    ${user['interiorType']}
+    Select Manufacture Warranty    ${user['manufactureWarranty']}
+    Enter Warrnty Year Remaining    ${user['warrntyYearRemaining']}
+    Select Alloy Wheels    ${user['alloyWheels']}
+    Select Spare Tyre    ${user['spareTyre']}
+    Select Jack    ${user['jack']}
+    Select Tool    ${user['tool']}
+    Select Wheel Caps    ${user['wheelCaps']}
+    Select Floorr Mats    ${user['floorrMats']}
+    Select Fire Extinguisher    ${user['fireExtinguisher']}
+    Select First AidKit    ${user['firstAidKit']}
+    Select SpareKey    ${user['spareKey']}
+    Select Radio    ${user['radio']}
+    Select Sun Roof    ${user['sunRoof']}
+    Select Electric Window    ${user['electricWindow']}
+    Select Satellite Navigation    ${user['satelliteNavigation']}
+    Select dvd    ${user['dvd']}
+    Select Screen    ${user['screen']}
+    Select Air Conditioner    ${user['airConditioner']}
+    Select Battery    ${user['battery']}
+    Enter Remarks    ${user['remarks']}
+Lead_Creation_Loan Details
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Product Details
+    Click on Loan Details
+    Enter First Emi Date    ${user['firstEmiDate']}
+    Enter Required Tenure    ${user['requiredTenure']}
+    Click on Save Product
+
+Lead_Creation_Repayment_Mode
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Product Details
+    Click on Repayment Mode
+    Enter Repayment Mode    ${user['repaymentMode']}
+    Select isDefault    ${user['isDefault']}
+    Click on Save RepaymentDtls
+Lead_Creation_Customer_Document
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Customer Document
+    Click on New document
+    Select Document Group    ${user['docGrp']}
+    Select Document Type    ${user['docType']}
+    Choose document
+    Click on Save Document
+Lead_Creation_Policy_Review
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on Policy Review
+    Click on Policy Check
+    Click Credit Score Card
+    Click on Internal Credit Score
+    Click Customer Risk Rating
+    Click on Customer Risk Rating
 Basic Details
     [Arguments]    ${user}
     Click on Edit Icon
@@ -122,6 +275,7 @@ Employment Details
     Enter Income Amt    ${user['incomeType']}
     Click on Add Income
     Sleep    5s
+    Click on Save Employment
 Bank Details
     [Arguments]    ${user}
     Click Bank Details
@@ -136,6 +290,8 @@ Contact Details
     Select Frame    //iframe[@id="viewReferenceDetailsFrame"]
     Select Customer Type    ${user['CustomerTypeContactDetails']}
     Select Contact Type    ${user['ContactType']}
+    Select Relation With Cust    ${user['relationWithCust']}
+    Enter Contact Name    ${user['relationName']}
     Enter Contact Number    ${user['MobileNumber']}
     Select Status    ${user['Contact_status']}
     Click on Save Contact Details
@@ -155,6 +311,7 @@ Input Username
 	Log    Input User name ${username}
     Input Text    //input[@id='loginId']    ${username}
     Capture Screenshot
+    Click Element    //input[@id='uiPwd']
 
 Click Login Button
 	Wait Until Element Is Visible    //button[@id='userLogin']    timeout=10s
@@ -471,17 +628,17 @@ Select Date Day
 Get Date Day
     [Arguments]    ${date}
     ${day}    Evaluate    '${date}'.split('-')[0]    # Splitting 'DD-MM-YYYY'
-    [Return]    ${day}
+    RETURN    ${day}
 
 Get Date Month
     [Arguments]    ${date}
     ${month}    Evaluate    '${date}'.split('-')[1]    # Splitting 'DD-MM-YYYY'
-    [Return]    ${month}
+    RETURN    ${month}
 
 Get Date Year
     [Arguments]    ${date}
     ${year}    Evaluate    '${date}'.split('-')[2]    # Splitting 'DD-MM-YYYY'
-    [Return]    ${year}
+    RETURN    ${year}
 Click Address Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
@@ -628,10 +785,6 @@ Click on Add Income
     Click Button    //button[@id="addIncomebt"]
     Sleep    2s
     Capture Screenshot
-    Execute JavaScript    window.top.focus();
-    Execute JavaScript    window.top.scrollTo(0, 0)
-    Sleep    2s
-    Execute Javascript    window.top.location.href = window.top.location.href
 Click Bank Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
@@ -690,6 +843,12 @@ Enter Contact Number
     Log    Contact Number
     Input Text    //input[@id="contactNumber"]    ${value}
     Capture Screenshot
+Enter Contact Name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="relationName"]    timeout=5s
+    Log    Contact Name
+    Input Text    //input[@id="relationName"]    ${value}
+    Capture Screenshot
 Select Status
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="status"]    timeout=10s
@@ -715,3 +874,633 @@ Click on Product Details
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Product Details')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     Sleep    2s
     Capture Screenshot
+
+
+Select Record Available With NFH
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //select[@id="regWithNfh"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="regWithNfh"]    ${value}
+Select Purchase Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehPurchaseType"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehPurchaseType"]    ${value}
+Select Hire Purchase
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="hirePurchase"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="hirePurchase"]    ${value}
+Select Vehicle Owner
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="isApplicantOwner"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="isApplicantOwner"]    ${value}
+Select Security Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="isPrimrySecurity"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="isPrimrySecurity"]    ${value}
+Select Vehicle Dealer
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehDealer"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehDealer"]    ${value}
+Select Dealer Salesman
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="dealerSaleman"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="dealerSaleman"]    ${value}
+Select Vehicle Category
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehCat"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehCat"]     ${value}
+Select Vehicle maker
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehMaker"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehMaker"]    ${value}
+Select Vehicle Model
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehModel"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehModel"]    ${value}
+Select Vehicle Model Category
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehModelCat"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehModelCat"]    ${value}
+Select Country of Manufacture
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="manufactureCountry"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="manufactureCountry"]    ${value}
+Select Colour
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="colour"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="colour"]    ${value}
+Select Year Of Manufacture
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="manufactureYear"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="manufactureYear"]    ${value}
+Enter Vehicle Price
+    [Arguments]    ${value}
+
+    Wait Until Element Is Visible    //input[@name="vehiclePrice_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').focus();
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').value = '';
+    Input Text    //input[@name="vehiclePrice_txt"]    ${value}
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('vehiclePrice_txt').dispatchEvent(new Event('blur'));
+    Sleep    2s
+
+Enter Down Payment
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="downPaymentPer_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').focus();
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').value = '';
+    Input Text    //input[@name="downPaymentPer_txt"]    ${value}
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('downPaymentPer_txt').dispatchEvent(new Event('blur'));
+    Sleep    1s
+    Capture Screenshot
+
+Enter Initial Payment To NFH
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="initialPaymt_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('initialPaymt_txt').focus();
+    Execute JavaScript    document.getElementById('initialPaymt_txt').value = '';
+    Input Text    //input[@name="initialPaymt_txt"]    ${value}
+    Execute JavaScript    document.getElementById('initialPaymt_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('initialPaymt_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('initialPaymt_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('initialPaymt_txt').dispatchEvent(new Event('blur'));
+    Sleep    2s
+    Capture Screenshot
+Enter Actual Vehicle Price
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="actVehiclePrice_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').focus();
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').value = '';
+    Input Text    //input[@name="actVehiclePrice_txt"]    ${value}
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('actVehiclePrice_txt').dispatchEvent(new Event('blur'));
+    Capture Screenshot
+Enter Admin Fees
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="adminCharge_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('adminCharge_txt').focus();
+    Execute JavaScript    document.getElementById('adminCharge_txt').value = '';
+    Input Text    //input[@name="adminCharge_txt"]    ${value}
+    Execute JavaScript    document.getElementById('adminCharge_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('adminCharge_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('adminCharge_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('adminCharge_txt').dispatchEvent(new Event('blur'));
+    Capture Screenshot
+Enter Vat on Admin Fees
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="adminVat"]    timeout=5s
+    Log    Vat on Admin Fees
+    Input Text    //input[@name="adminVat"]    ${value}
+    Capture Screenshot
+Enter Admin Fees Including VAT
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="adminChagreWithVat_txt"]    timeout=5s
+    Log   Admin Fees Including VAT
+    Input Text    //input[@name="adminChagreWithVat_txt"]    ${value}
+    Capture Screenshot
+Select Admin Fees Payment Mode
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="modeOfPayment"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="modeOfPayment"]    ${value}
+Select Is Insurance With NFH
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="isInsuredWithNFH"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="isInsuredWithNFH"]    ${value}
+Click on Save Collateral
+    Wait Until Element Is Visible    //button[@id="saveCollateral"]     timeout=10s
+    Log    Clicking on Save Bank
+    Sleep    2s
+    Click Button    //button[@id="saveCollateral"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+
+Click on Valuation Details
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Valuation Details')]    timeout=10s
+    Log    Clicking on Product Details
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Valuation Details')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Select Collateral Type
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewValuationDtlScreenFrame"]
+    Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralType"]    ${value}
+Select Collateral SubType
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="collateralSubType"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralSubType"]    ${value}
+Select Valuator Name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="valuatorName"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="valuatorName"]    ${value}
+Enter Other Valuator Name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="otherValuatorName"]     timeout=5s
+    Log    Other Valuator Name
+    Input Text    //input[@id="otherValuatorName"]    ${value}
+    Capture Screenshot
+Enter Estimated ValuationAmt
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="estimatedValuationAmt_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').focus();
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').value = '';
+    Input Text    //input[@name="estimatedValuationAmt_txt"]    ${value}
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('estimatedValuationAmt_txt').dispatchEvent(new Event('blur'));
+    Sleep    2s
+Enter Final ValuationAmt
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="finalValuationAmt_txt"]    timeout=5s
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').focus();
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').value = '';
+    Input Text    //input[@name="finalValuationAmt_txt"]    ${value}
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('finalValuationAmt_txt').dispatchEvent(new Event('blur'));
+    Sleep    2s
+Enter Valuation Date
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="valuationDate"]     timeout=5s
+    Log    Valuation Date
+    Input Text    //input[@id="valuationDate"]    ${value}
+    Capture Screenshot
+
+
+Enter year
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="year"]     timeout=5s
+    Log    year
+    Input Text    //input[@id="year"]    ${value}
+    Capture Screenshot
+Enter Chassis No
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="chassisNo"]     timeout=5s
+    Log    Chassis No
+    Input Text    //input[@id="chassisNo"]    ${value}
+    Capture Screenshot
+Enter Registration No
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="registrationNo"]     timeout=5s
+    Log    Registration No
+    Input Text    //input[@id="registrationNo"]    ${value}
+    Capture Screenshot
+Enter Engine Capacity
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="engineCapacity"]     timeout=5s
+    Log    Engine Capacity
+    Input Text    //input[@id="engineCapacity"]    ${value}
+    Capture Screenshot
+Enter Mileage
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="mileage"]     timeout=5s
+    Log    Mileage
+    Input Text    //input[@id="mileage"]    ${value}
+    Capture Screenshot
+Enter Cylinder
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="cylinder"]     timeout=5s
+    Log    Cylinder
+    Input Text    //input[@id="cylinder"]    ${value}
+    Capture Screenshot
+Enter Color
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="color"]     timeout=5s
+    Log    Color
+    Input Text    //input[@id="color"]    ${value}
+    Capture Screenshot
+Enter Insurance Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="insuranceType"]     timeout=5s
+    Log    Insurance Type
+    Input Text    //input[@id="insuranceType"]    ${value}
+    Capture Screenshot
+Select Vehicle Condition
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="vehicleCondition"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="vehicleCondition"]    ${value}
+Select Exterior Condition
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="exteriorCondition"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="exteriorCondition"]    ${value}
+Select Interior Condition
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="interiorCondition"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="interiorCondition"]    ${value}
+Select Tyre Condition
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="tyreCondition"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="tyreCondition"]    ${value}
+Select Engine Condition
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="engineCondition"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="engineCondition"]    ${value}
+Select Gear Box
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="gearBox"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="gearBox"]    ${value}
+Select Suspension
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="suspension"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="suspension"]    ${value}
+Select InteriorType
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="interiorType"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="interiorType"]    ${value}
+Select Manufacture Warranty
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="manufactureWarranty"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="manufactureWarranty"]    ${value}
+Enter Warrnty Year Remaining
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="warrntyYearRemaining"]     timeout=5s
+    Log    Warrnty Year Remaining
+    Input Text    //input[@id="warrntyYearRemaining"]    ${value}
+    Capture Screenshot
+Select Alloy Wheels
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="alloyWheels"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="alloyWheels"]    ${value}
+    Capture Screenshot
+Select Spare Tyre
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="spareTyre"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="spareTyre"]    ${value}
+    Capture Screenshot
+Select Jack
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="jack"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="jack"]    ${value}
+    Capture Screenshot
+Select Tool
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="tool"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="tool"]    ${value}
+    Capture Screenshot
+Select Wheel Caps
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="wheelCaps"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="wheelCaps"]    ${value}
+    Capture Screenshot
+Select Floorr Mats
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="floorrMats"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="floorrMats"]    ${value}
+    Capture Screenshot
+Select Fire Extinguisher
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="fireExtinguisher"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="fireExtinguisher"]    ${value}
+    Capture Screenshot
+Select First AidKit
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="firstAidKit"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="firstAidKit"]    ${value}
+    Capture Screenshot
+Select SpareKey
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="spareKey"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="spareKey"]    ${value}
+    Capture Screenshot
+Select Radio
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="radio"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="radio"]    ${value}
+    Capture Screenshot
+Select Sun Roof
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="sunRoof"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="sunRoof"]    ${value}
+    Capture Screenshot
+Select Electric Window
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="electricWindow"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="electricWindow"]    ${value}
+    Capture Screenshot
+Select Satellite Navigation
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="satelliteNavigation"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="satelliteNavigation"]    ${value}
+    Capture Screenshot
+Select dvd
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="dvd"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="dvd"]    ${value}
+    Capture Screenshot
+Select Screen
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="screen"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="screen"]    ${value}
+    Capture Screenshot
+Select Air Conditioner
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="airConditioner"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="airConditioner"]    ${value}
+    Capture Screenshot
+Select Battery
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="battery"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="battery"]    ${value}
+    Capture Screenshot
+Enter Remarks
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="mileage"]     timeout=5s
+    Log    Remarks
+    Input Text    //textarea[@id="remarks"]    ${value}
+    Capture Screenshot
+Click on Loan Details
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Loan Details')]    timeout=10s
+    Log    Clicking on Product Details
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Loan Details')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+
+Enter First Emi Date
+    [Arguments]    ${value}
+    Sleep    5s
+    #Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewproductIdFrame"]
+    Wait Until Element Is Visible    //input[@id="firstEmiDate"]     timeout=5s
+    Log    Remarks
+    Input Text    //input[@id="firstEmiDate"]    ${value}
+    Capture Screenshot
+Enter Required Tenure
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="requiredTenure"]     timeout=5s
+    Log    Required Tenure
+    Press Keys    id=requiredTenure    6
+    Press Keys    id=requiredTenure    0
+    Sleep    2s
+    Click Button    //input[@id="ageInYears"]
+    Sleep    5s
+Click on Save Product
+    Wait Until Element Is Visible    //button[@id="saveproduct"]    timeout=10s
+    Log    Clicking on Save Button
+    Sleep    2s
+    Click Button    //button[@id="saveproduct"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on Repayment Mode
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Repayment Mode')]    timeout=10s
+    Log    Clicking on Repayment Mode
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Repayment Mode')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Enter Repayment Mode
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewRepaymentDetailsFrame"]
+    Wait Until Element Is Visible    //select[@id="repaymentMode"]     timeout=5s
+    Log    Remarks
+    Select From List By Value    //select[@id="repaymentMode"]    ${value}
+    Capture Screenshot
+Select isDefault
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="isDefault"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="isDefault"]    ${value}
+    Capture Screenshot
+
+Click on Save RepaymentDtls
+    Wait Until Element Is Visible    //button[@id="saveRepaymentDtls"]    timeout=10s
+    Log    Clicking on Save RepaymentDtls
+    Sleep    2s
+    Click Button    //button[@id="saveRepaymentDtls"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on Customer Document
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Customer Document')]    timeout=10s
+    Log    Clicking on Customer Document
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Customer Document')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+
+Click on New document
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Select Frame    //iframe[@id="documentUploadLOSCollectionFrame"]
+    Wait Until Element Is Visible    //button[@id="newDocument"]     timeout=5s
+    Log    Clicking on new document button....
+    Click Button    //button[@id="newDocument"]
+    Capture Screenshot
+Select Document Group
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="docGrp"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="docGrp"]    ${value}
+    Capture Screenshot
+Select Document Type
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="docType"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="docType"]    ${value}
+    Capture Screenshot
+Select Relation With Cust
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="relationWithCust"]    timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="relationWithCust"]    ${value}
+    Capture Screenshot
+
+Choose document
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
+    Choose File    xpath=//input[@id="documentData" and @type="file"]    D:/New_automation_/web-automation-framework/tests/selenium-screenshot-1.png
+Click on Save Document
+    Wait Until Element Is Visible    //button[@id="saveDoc"]    timeout=10s
+    Log    Clicking on Save RepaymentDtls
+    Sleep    2s
+    Click Button    //button[@id="saveDoc"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on Save Employment
+    Wait Until Element Is Visible    //button[@id="saveEmployment"]    timeout=10s
+    Log    Clicking on Click on Save Employment
+    Sleep    2s
+    Click Button    //button[@id="saveEmployment"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on Policy Review
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //a[contains(text(), 'Policy Review')]    timeout=10s
+    Log    Clicking on Policy Review
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Policy Review')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Policy Check
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewBHCFrame"]
+    Wait Until Element Is Visible    //button[@id="generatePolCheck"]     timeout=5s
+    Log    Clicking on Policy Check
+    Click Button    //button[@id="generatePolCheck"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click Credit Score Card
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Credit Score Card")]]    timeout=10s
+    Log    Clicking on Credit Score Card
+    Click Element    //li[a[contains(text(),"Credit Score Card")]]
+    Capture Screenshot
+Click on Internal Credit Score
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="BreViewScreenFrame"]
+    Wait Until Element Is Visible    //button[@id="generateBRE"]     timeout=5s
+    Log    Clicking on Internal Credit Score
+    Click Button    //button[@id="generateBRE"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click Customer Risk Rating
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Customer Risk Rating")]]    timeout=10s
+    Log    Clicking on Customer Risk Rating
+    Click Element    //li[a[contains(text(),"Customer Risk Rating")]]
+    Capture Screenshot
+Click on Customer Risk Rating
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewCreditRatingFrame"]
+    Wait Until Element Is Visible    //button[@id="generate"]     timeout=5s
+    Log    Clicking on Customer Risk Rating
+    Click Button    //button[@id="generate"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Capture Screenshot
+    Execute Javascript    window.top.location.href = window.top.location.href
