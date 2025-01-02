@@ -57,6 +57,10 @@ Repayment_Mode_EFT
     Sleep    2s
     Click Pop_Up_Yes Button
     Sleep    4s
+    Select Group Name    ${user['grpName']}
+    Select User name    ${user['assignUser']}
+    Enter Maker Remarks    ${user['makerRemarks']}
+    Click on User Assign Save
     Get value of assignedTo
     Get value of serviceId
     Sleep    4s
@@ -436,8 +440,11 @@ Click On Address Details
 
 Input Username
     [Arguments]    ${username}
+	Log    Input User name ${username}
     Input Text    //input[@id='loginId']    ${username}
     Capture Screenshot
+    Click Element    //input[@id='uiPwd']
+
 Input Password
     [Arguments]    ${password}
     Input Text    //input[@id='uiPwd']    ${password}
@@ -569,4 +576,21 @@ Enter No of PDC
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="pdcNos"]    timeout=5s
     Input Text    //input[@id="pdcNos"]    ${value}
+    Capture Screenshot
+Select Group Name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="grpName"]     timeout=10s
+    Select From List By Value    //select[@id="grpName"]    ${value}
+Select User name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="assignUser"]     timeout=10s
+    Select From List By Value    //select[@id="assignUser"]    ${value}
+Enter Maker Remarks
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //textarea[@id="makerRemarks"]    timeout=5s
+    Input Text    //textarea[@id="makerRemarks"]    ${value}
+    Capture Screenshot
+Click on User Assign Save
+    Wait Until Element Is Enabled    //a[@id="userAssignSave"]    timeout=50s
+    Click Element    //a[@id="userAssignSave"]
     Capture Screenshot
