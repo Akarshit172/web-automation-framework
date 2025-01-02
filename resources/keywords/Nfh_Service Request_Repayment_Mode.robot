@@ -117,6 +117,10 @@ Repayment_Mode_Cash
     Sleep    2s
     Click Pop_Up_Yes Button
     Sleep    4s
+    Select Group Name    ${user['grpName']}
+    Select User name    ${user['assignUser']}
+    Enter Maker Remarks    ${user['makerRemarks']}
+    Click on User Assign Save
     Get value of assignedTo
     Get value of serviceId
     Sleep    4s
@@ -176,7 +180,10 @@ Service_Repayment_Mode_PDC
     Click on Repayment_Submit
     Sleep    2s
     Click Pop_Up_Yes Button
-    Sleep    4s
+    Select Group Name    ${user['grpName']}
+    Select User name    ${user['assignUser']}
+    Enter Maker Remarks    ${user['makerRemarks']}
+    Click on User Assign Save
     Get value of assignedTo
     Get value of serviceId
     Sleep    4s
