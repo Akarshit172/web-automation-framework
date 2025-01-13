@@ -60,5 +60,5 @@ if __name__ == "__main__":
     print("Available test cases:", test_cases)
 
     # Specify tests to run or leave empty to run all
-    tests_to_run = ["Lead_Creation_CPR"]
+    tests_to_run = ["Lead_Creation_CR"]
     run_tests(TEST_FILE, tests_to_run)

@@ -2,6 +2,7 @@
 Library    SeleniumLibrary
 #Library    ../../libraries/custom_selenium_keywords.py  # Import Python custom keywords
 *** Variables ***
+${SCREENSHOT_DIR}     screenshots/screenshot
 ${assignedTo}
 ${serviceId}
 *** Keywords ***
@@ -44,7 +45,33 @@ Lead_Creation_flow
 
     #Select ID Type    ${user['IDType']}
     #Enter ID Number    ${user['IDNumber']}
-
+Lead_Creation_CR_flow
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter CompanyName    ${user['companyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_CR_KYC    ${user}
 Lead_Creation_KYC
     [Arguments]    ${user}
 #    Wait For Page To Load
@@ -67,6 +94,31 @@ Lead_Creation_KYC
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
+
+Lead_Creation_CR_KYC
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    Click on KYC
+    Basic Details CR    ${user}
+    Address Details CR    ${user}
+    Identification DetailsC    ${user}
+    #Employment Details    ${user}
+    Bank Details    ${user}
+    Business Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+
 Lead_Creation_Product_Details
     [Arguments]    ${user}
 #    Wait For Page To Load
@@ -229,7 +281,7 @@ Basic Details
     Click on Edit Icon
     Select Applicant Type    ${user['ApplicantType']}
     Enter Email Id    ${user['email']}
-    Select Source Of Income    ${user['ApplicantType']}
+    Select Source Of Income    ${user['SourceOfIncome']}
     Execute Javascript    window.scrollBy(0, 300);
     Select Title    ${user['Title']}
     Select Nationality    ${user['Nationality']}
@@ -243,6 +295,44 @@ Basic Details
     Select Returned Cheques    ${user['ReturnedCheques']}
     Select Cheque Abuser List    ${user['ChequeAbuserList']}
     Click on Save Basic
+Basic Details CR
+    [Arguments]    ${user}
+    Click on Edit Icon
+    Select Applicant Type    ${user['ApplicantType']}
+    Enter Email Id    ${user['email']}
+    Select Source Of Income    ${user['SourceOfIncome']}
+    Execute Javascript    window.scrollBy(0, 300);
+    Select FormOfOrganization    ${user['formOfOrganization']}
+    Enter Registration Date    ${user['registrationDate']}
+    Enter Expiration Date    ${user['expirationDate']}
+    Select PlaceOfEstablishment    ${user['placeOfEstablishment']}
+    Select Purpose Code    ${user['purposeCode']}
+
+#    Select Nationality    ${user['Nationality']}
+#    Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
+#    Select educationLevel    ${user['EducationLevel']}
+#    Select Date From Date Picker    ${user['DateOfBirth']}
+#    Sleep    5s
+#    Select educationLevel    ${user['EducationLevel']}
+#    Select Marital Status    ${user['MaritalStatus']}
+#    Enter No Of Dependents    ${user['NoOfDependents']}
+#    Select Returned Cheques    ${user['ReturnedCheques']}
+#    Select Cheque Abuser List    ${user['ChequeAbuserList']}
+    Click on Save Basic
+Address Details CR
+    [Arguments]    ${user}
+    Click Address Details
+    Select Address Type    ${user['addressType']}
+    #Select Property ownership    ${user['PropertyOwnership']}
+    Enter Address Line1C    ${user['addressLine1']}
+    Enter flatOrVillaC    ${user['flat']}
+    Enter buildingC    ${user['building']}
+    Enter AvenueC    ${user['avenue']}
+    Select BlockC    ${user['Block']}
+    Select CountryC    ${user['Country']}
+    Select City_AreaC    ${user['City_Area']}
+    Click Is PermantAddC
+    Click on Save Address
 Address Details
     [Arguments]    ${user}
     Click Address Details
@@ -267,6 +357,16 @@ Identification Details
     Enter Expiry Date    ${user['expiryDate']}
     Select Renewal Under Process    ${user['renewalUnderProcess']}
     Click on Save Identy
+Identification DetailsC
+    [Arguments]    ${user}
+    Click Identification Details
+    Click on Edit Icon IdentifiDetailsC
+    #Click Identification Details
+    #Enter Issue Date    ${user['issueDate']}
+    #Enter Expiry Date    ${user['expiryDate']}
+    Select Renewal Under Process    ${user['renewalUnderProcess']}
+    Select CR Status    ${user['crStatus']}
+    Click on Save Identy
 Employment Details
     [Arguments]    ${user}
     Click Employment Details
@@ -283,6 +383,20 @@ Bank Details
     Enter Account Number	${user['accountNumber']}
     Enter IBAN Number	${user['ibanNumber']}
     Click on Save Bank
+Business Details
+    [Arguments]    ${user}
+    Click Business Details
+    Select Auto Black listed    ${user['autoBlacklisted']}
+    Select UnList Validated    ${user['unListValidated']}
+    Select Returned Cheques    ${user['ReturnedCheques']}
+    Select Cheque Abuser List    ${user['ChequeAbuserList']}
+    Select Bank Name Business    ${user['bankNameBusiness']}
+    Enter Total Credit Turnover    ${user['totCreditTurnOver']}
+    Enter No Of Months    ${user['noOfMonths']}
+    Enter Credit Turnover    ${user['avgCreditTurnoverPerc']}
+    Click Add Cred Trnvbt
+    Click Calculate
+    Click on Save Business
 Contact Details
     [Arguments]    ${user}
     Click Contact Details
@@ -499,11 +613,18 @@ Click on Edit Icon IdentifiDetails
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewIdentifiDetailsIdFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Sleep    3s
+    Sleep    5s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
     Capture Screenshot
     Sleep    3s
-
+Click on Edit Icon IdentifiDetailsC
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewIdentifiDetailsIdFrame"]
+    Wait Until Element Is Visible    //a[starts-with(@onclick, concat('EditData(', "'CR',", ''))]     timeout=10s
+    Click Element    //a[starts-with(@onclick, concat('EditData(', "'CR',", ''))]
+    Capture Screenshot
+    Sleep    3s
 Select Applicant Type
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="applicantType"]    timeout=5s
@@ -672,13 +793,25 @@ Enter flat
     Input Text    //input[@id="flatOrVilla"]    ${value}
     Capture Screenshot
 
+Enter flatOrVillaC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="flatOrVillaC"]    timeout=5s
+    Log    Enter flat
+    Input Text    //input[@id="flatOrVillaC"]    ${value}
+    Capture Screenshot
 Enter Building
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="building"]    timeout=5s
     Log    Enter flat
     Input Text    //input[@id="building"]    ${value}
     Capture Screenshot
-
+Enter buildingC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="buildingC"]    timeout=5s
+    Log    Enter flat
+    Input Text    //input[@id="buildingC"]    ${value}
+    Sleep    5s
+    Capture Screenshot
 Enter Avenue
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="avenue"]    timeout=5s
@@ -686,23 +819,49 @@ Enter Avenue
     Input Text    //input[@id="avenue"]    ${value}
     Capture Screenshot
 
+Enter AvenueC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="avenueC"]    timeout=5s
+    Log    Enter avenue
+    Input Text    //input[@id="avenueC"]    ${value}
+    Capture Screenshot
 Select Block
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="pinCode"]     timeout=10s
     Select From List By Value    //select[@id="pinCode"]    ${value}
+Select BlockC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="pinCodeC"]     timeout=10s
+    Select From List By Value    //select[@id="pinCodeC"]    ${value}
 Select Country
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="country"]     timeout=10s
     Select From List By Value    //select[@id="country"]    ${value}
+Select CountryC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="countryC"]     timeout=10s
+    Select From List By Value    //select[@id="countryC"]    ${value}
 Select City_Area
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="state"]     timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="state"]    ${value}
+
+Select City_AreaC
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="stateC"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="stateC"]    ${value}
 Click Is PermantAdd
     Wait Until Element Is Visible    //input[@id="isPermantAdd"]    timeout=10s
     Log    Clicking Is PermantAdd Checkbox
     Click Element    //input[@id="isPermantAdd"]
+    Capture Screenshot
+
+Click Is PermantAddC
+    Wait Until Element Is Visible    //input[@id="isPermantAddC"]    timeout=10s
+    Log    Clicking Is PermantAdd Checkbox
+    Click Element    //input[@id="isPermantAddC"]
     Capture Screenshot
 Click on Save Address
     Wait Until Element Is Visible    //button[@id="saveAddr"]   timeout=10s
@@ -740,6 +899,11 @@ Select Renewal Under Process
     Wait Until Element Is Visible    //select[@id="renewalUnderProcess"]     timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="renewalUnderProcess"]    ${value}
+Select CR Status
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="crStatus"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="crStatus"]    ${value}
 Click on Save Identy
     Wait Until Element Is Visible    //button[@id="saveIdenty"]   timeout=10s
     Log    Clicking on Save Address Button
@@ -789,8 +953,15 @@ Click Bank Details
     Sleep    3s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Bank Details")]]    timeout=10s
-    Log    Clicking on Identification Details
+    Log    Clicking on Bank Details
     Click Element    //li[a[contains(text(),"Bank Details")]]
+    Capture Screenshot
+Click Business Details
+    Sleep    3s
+    Execute Javascript    window.scrollBy(0, 300);
+    Wait Until Element Is Visible    //li[a[contains(text(),"Business Details")]]    timeout=10s
+    Log    Clicking on Business Details
+    Click Element    //li[a[contains(text(),"Business Details")]]
     Capture Screenshot
 Select Bank Name
     [Arguments]    ${value}
@@ -800,12 +971,72 @@ Select Bank Name
     Wait Until Element Is Visible    //select[@id="bankName"]     timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="bankName"]    ${value}
+Select Bank Name Business
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="bankName"]     timeout=10s
+    Sleep    2s
+    Select From List By Label    //select[@id="bankName"]    ${value}
+Select Auto Black listed
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewBussinessDetailsFrame"]
+    Wait Until Element Is Visible    //select[@id="autoBlacklisted"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="autoBlacklisted"]    ${value}
+Select UnList Validated
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="unListValidated"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="unListValidated"]    ${value}
+
 Enter Account Number
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="accountNumber"]    timeout=5s
     Log    Account Number
     Input Text    //input[@id="accountNumber"]    ${value}
     Capture Screenshot
+
+Enter Total Credit Turnover
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="totCreditTurnOver"]    timeout=5s
+    Log    Total Credit Turnover
+    Input Text    //input[@id="totCreditTurnOver"]    ${value}
+    Capture Screenshot
+Enter No Of Months
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="noOfMonths"]    timeout=5s
+    Log    No Of Months
+    Input Text    //input[@id="noOfMonths"]    ${value}
+    Capture Screenshot
+
+Enter Credit Turnover
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="avgCreditTurnoverPerc"]    timeout=5s
+    Log    Credit Turnover
+    Select From List By Value    //select[@id="avgCreditTurnoverPerc"]    ${value}
+    Capture Screenshot
+Click Add Cred Trnvbt
+	Wait Until Element Is Visible    //button[@id='addCredTrnvbt']    timeout=10s
+	Log    Clicking on Add Cred Trnvbt
+    Click Element    //button[@id='addCredTrnvbt']
+    Capture Screenshot
+Click Calculate
+	Wait Until Element Is Visible    //button[@id='fundBtn']    timeout=10s
+	Log    Clicking on Calculate
+    Click Element    //button[@id='fundBtn']
+    Capture Screenshot
+Click on Save Business
+    Wait Until Element Is Visible    //button[@id="saveBusin"]     timeout=10s
+    Log    Clicking on Save Business
+    Sleep    2s
+    Click Button    //button[@id="saveBusin"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
 Enter IBAN Number
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="ibanNumber"]    timeout=5s
@@ -1504,3 +1735,53 @@ Click on Customer Risk Rating
     Sleep    2s
     Capture Screenshot
     Execute Javascript    window.top.location.href = window.top.location.href
+
+Enter CompanyName
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="companyName"]     timeout=5s
+    Log    CompanyName
+    Input Text    //input[@name="companyName"]    ${value}
+    Capture Screenshot
+Select FormOfOrganization
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="formOfOrganization"]    timeout=5s
+    Log    FormOfOrganization
+    Select From List By Value    //select[@id="formOfOrganization"]    ${value}
+    Capture Screenshot
+
+Enter Registration Date
+    [Arguments]    ${value}
+    Sleep    5s
+    Wait Until Element Is Visible    //input[@id="registrationDate"]     timeout=5s
+    Log    Registration Date
+    Clear Element Text    //input[@id="registrationDate"]
+    Sleep    5s
+    Input Text    //input[@id="registrationDate"]    ${value}
+    Capture Screenshot
+Enter Expiration Date
+    [Arguments]    ${value}
+    Sleep    5s
+    Wait Until Element Is Visible    //input[@id="expirationDate"]     timeout=5s
+    Log    Expiration Date
+    Clear Element Text    //input[@id="expirationDate"]
+    Input Text    //input[@id="expirationDate"]    ${value}
+    Capture Screenshot
+
+Select PlaceOfEstablishment
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="placeOfEstablishment"]    timeout=5s
+    Log    PlaceOfEstablishment
+    Select From List By Value    //select[@id="placeOfEstablishment"]    ${value}
+    Capture Screenshot
+Select Purpose Code
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="purposeCode"]    timeout=5s
+    Log    Purpose Code
+    Select From List By Value    //select[@id="purposeCode"]    ${value}
+    Capture Screenshot
+Enter Address Line1C
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@id="addressLine1C"]    timeout=5s
+    Log    Enter Address Line1
+    Input Text    //input[@id="addressLine1C"]    ${value}
+    Capture Screenshot

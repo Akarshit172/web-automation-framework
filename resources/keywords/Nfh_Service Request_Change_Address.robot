@@ -49,6 +49,10 @@ Change Address
     Click on Submit Button
     Click Pop_Up_Yes Button
     Sleep    4s
+    Select Group Name    ${user['grpName']}
+    Select User name    ${user['assignUser']}
+    Enter Maker Remarks    ${user['makerRemarks']}
+    Click on User Assign Save
     Get value of assignedTo
     Get value of serviceId
     Sleep    4s
@@ -316,12 +320,6 @@ Click on Repayment_Submit
     Capture Screenshot
 
 
-Here’s how you can create a Robot Framework keyword to open a URL dynamically and check for expected text on the page:
-
-Keyword Implementation
-robot
-Copy code
-
 Open URL And Verify Repayment Mode
     [Arguments]    ${user}
     Close Browser
@@ -366,8 +364,10 @@ Click On Address Details
 
 Input Username
     [Arguments]    ${username}
+	Log    Input User name ${username}
     Input Text    //input[@id='loginId']    ${username}
     Capture Screenshot
+    Click Element    //input[@id='uiPwd']
 Input Password
     [Arguments]    ${password}
     Input Text    //input[@id='uiPwd']    ${password}
@@ -404,3 +404,52 @@ Select Active InActive Type
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="activeInActiveType"]     timeout=10s
     Select From List By Value    //select[@id="activeInActiveType"]    ${value}
+
+
+Select Group Name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="grpName"]     timeout=10s
+    Select From List By Value    //select[@id="grpName"]    ${value}
+Select User name
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="assignUser"]     timeout=10s
+    Select From List By Value    //select[@id="assignUser"]    ${value}
+Enter Maker Remarks
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //textarea[@id="makerRemarks"]    timeout=5s
+    Input Text    //textarea[@id="makerRemarks"]    ${value}
+    Capture Screenshot
+Click on User Assign Save
+    Wait Until Element Is Enabled    //a[@id="userAssignSave"]    timeout=50s
+    Click Element    //a[@id="userAssignSave"]
+    Capture Screenshot
+
+Open URL And Verify Change Address
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0    chrome
+    Sleep    3s
+    Maximize Browser Window
+    Input Username    ${user['username2']}
+    Sleep    1s
+    Input Password    ${user['password']}
+    Sleep    1s
+    Click Login Button
+    Wait Until Element Is Visible    //a[@data-original-title="Menu"]    timeout=10s
+    Click Element    //a[@data-original-title="Menu"]
+    Sleep    1s
+    Wait Until Element Is Visible    //li[@id="CUST360"]    timeout=10s
+    Click Element    //li[@id="CUST360"]
+    Sleep    1s
+    Input Text    //input[@id="cust360SearchId"]    ${user['customerID']}
+    Sleep    1s
+    Click Button    //button[@id="cust360F2"]
+    Wait Until Element Is Visible    //h6[text()="Customer ID"]/following-sibling::label[text()="${user['customerID']}"]    timeout=10s
+    Click on Account Details Tab
+    Sleep    2s
+    Click On Address Details
+    Sleep    2s
+    Verify Change Address Detail    ${user}
+    Sleep    2s
+    [Teardown]    Close Browser
