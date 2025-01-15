@@ -3,25 +3,29 @@ from selenium.webdriver.common.by import By
 import os
 
 # Global WebDriver instance
-driver = None
+#driver = None
+import pyautogui
+import subprocess
+import time
 
 
-def open_browser(browser, url):
-    """
-    Opens the specified browser and navigates to the given URL.
 
-    :param browser: Browser name (chrome/firefox)
-    :param url: URL to navigate to
-    """
-    global driver
-    if browser.lower() == "chrome":
-        driver = webdriver.Chrome("drivers/chromedriver")
-    elif browser.lower() == "firefox":
-        driver = webdriver.Firefox("drivers/geckodriver")
-    else:
-        raise ValueError("Unsupported browser!")
-    driver.get(url)
-    driver.maximize_window()
+# def open_browser(browser, url):
+#     """
+#     Opens the specified browser and navigates to the given URL.
+#
+#     :param browser: Browser name (chrome/firefox)
+#     :param url: URL to navigate to
+#     """
+#     global driver
+#     if browser.lower() == "chrome":
+#         driver = webdriver.Chrome("drivers/chromedriver")
+#     elif browser.lower() == "firefox":
+#         driver = webdriver.Firefox("drivers/geckodriver")
+#     else:
+#         raise ValueError("Unsupported browser!")
+#     driver.get(url)
+#     driver.maximize_window()
 
 
 # def close_browser():
@@ -87,7 +91,27 @@ def open_browser(browser, url):
 #     element.send_keys(text)
 
 
-def close_popup():
-    global driver
-    element = driver.find_element(By.XPATH, '//em[text()="Promise To Pay"]/following-sibling::a')
-    element.click()
+# def close_popup():
+#     global driver
+#     element = driver.find_element(By.XPATH, '//em[text()="Promise To Pay"]/following-sibling::a')
+#     element.click()
+def Addition(a,b):
+    for i in range(1,9):
+        print(a+b)
+    #subprocess.Popen('notepad.exe')
+    subprocess.Popen('notepad.exe')
+    time.sleep(2)
+    pyautogui.moveTo(100, 200)
+    # pyautogui.click()
+    for i in range(1, 9):
+        pyautogui.write("Hello, this is an automated message!", interval=0.1)
+    pyautogui.hotkey('ctrl', 's')
+    pyautogui.moveTo(300, 300)
+    pyautogui.click()
+
+    # Type the filename
+    pyautogui.write("automated_file.txt")
+
+    # Press Enter to confirm
+    pyautogui.press('enter')
+    return a+b
