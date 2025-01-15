@@ -40,6 +40,7 @@ Lead_Creation_CR
             Run Keyword If    ${i} > 1    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
             Lead_Creation_CR_flow    ${user}
             #Lead_Creation_CR_KYC    ${user}
+            #Lead_Creation_Loan Details    ${user}
         END
     END
     Close Browser

@@ -1565,8 +1565,11 @@ Enter Required Tenure
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="requiredTenure"]     timeout=5s
     Log    Required Tenure
-    Press Keys    id=requiredTenure    6
-    Press Keys    id=requiredTenure    0
+    #Input Text    //input[@id="requiredTenure"]    ${value}
+    #Press Keys    id=requiredTenure    6
+    Execute Javascript    document.getElementById('requiredTenure').value = ${value};
+    #Execute Javascript    document.getElementById('requiredTenure').value = '0';
+    #Press Keys    id=requiredTenure    0
     Sleep    2s
     Click Button    //input[@id="ageInYears"]
     Sleep    5s
@@ -1785,4 +1788,3 @@ Enter Address Line1C
     Log    Enter Address Line1
     Input Text    //input[@id="addressLine1C"]    ${value}
     Capture Screenshot
-Hello.
