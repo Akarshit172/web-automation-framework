@@ -73,6 +73,12 @@ Lead_Creation_CR_flow
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
     Lead_Creation_CR_KYC    ${user}
+    Click on KYC
+    Click Business Details
+    Click on Business Details Edit Icon
+    Click Calculate
+    Click on Save Business
+    ICA Verification    ${user}
 Lead_Creation_KYC
     [Arguments]    ${user}
 #    Wait For Page To Load
@@ -1289,6 +1295,14 @@ Select Auto Black listed
     Wait Until Element Is Visible    //select[@id="autoBlacklisted"]     timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="autoBlacklisted"]    ${value}
+Click on Business Details Edit Icon
+    Sleep    2s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewBussinessDetailsFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+    Sleep    3s
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+    Capture Screenshot
 Select UnList Validated
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="unListValidated"]     timeout=10s
@@ -1341,6 +1355,7 @@ Click on Save Business
     Execute JavaScript    window.top.focus();
     Execute JavaScript    window.top.scrollTo(0, 0)
     Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
     Execute Javascript    window.top.location.href = window.top.location.href
 Enter IBAN Number
     [Arguments]    ${value}
