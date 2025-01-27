@@ -26,6 +26,7 @@ Lead_Creation_CPR
             Run Keyword If    ${i} > 1    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
             Lead_Creation_flow    ${user}
             #Lead_Creation_KYC    ${user}
+            #ICA Verification    ${user}
         END
     END
     Close Browser
@@ -44,3 +45,12 @@ Lead_Creation_CR
         END
     END
     Close Browser
+
+Lead_Creation_CR_Co_Applicant
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_Co_Applicant
+    FOR    ${user}    IN    @{login_data}
+        Basic Details_Co_Applicant    ${user}
+        #Open URL And Verify Change Address   ${user}
+    END

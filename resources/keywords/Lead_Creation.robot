@@ -5,6 +5,7 @@ Library    SeleniumLibrary
 ${SCREENSHOT_DIR}     screenshots/screenshot
 ${assignedTo}
 ${serviceId}
+${ELEMENT}    xpath=//div[@id="interface-view"]/div/div/div[1]/div/a
 *** Keywords ***
 
 
@@ -94,7 +95,7 @@ Lead_Creation_KYC
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
-
+    ICA Verification    ${user}
 Lead_Creation_CR_KYC
     [Arguments]    ${user}
 #    Wait For Page To Load
@@ -142,11 +143,13 @@ Lead_Creation_Product_Details
     Select Vehicle Model	${user['vehModel']}
     Select Vehicle Model Category	${user['vehModelCat']}
     Select Country of Manufacture	${user['manufactureCountry']}
+    Enter Vat on Chasis Number    ${user['chasisNumber']}
+    Enter Vat on Engine Number    ${user['engineNumber']}
     Select Colour	${user['colour']}
     Select Year Of Manufacture    ${user['manufactureYear']}
     Enter Vehicle Price    ${user['vehiclePrice_txt']}
-    Enter Down Payment    ${user['downPaymentPer_txt']}
-    Enter Initial Payment To NFH    ${user['initialPaymt_txt']}
+    #Enter Down Payment    ${user['downPaymentPer_txt']}
+    #Enter Initial Payment To NFH    ${user['initialPaymt_txt']}
     Enter Actual Vehicle Price    ${user['actVehiclePrice_txt']}
     Enter Admin Fees    ${user['adminCharge_txt']}
     #Enter Vat on Admin Fees    ${user['adminVat']}
@@ -276,6 +279,164 @@ Lead_Creation_Policy_Review
     Click on Internal Credit Score
     Click Customer Risk Rating
     Click on Customer Risk Rating
+ICA Verification
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username1']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on ICA Verification
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Offer Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Deal Printing Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Check Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Document Collection Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on LPO Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check Retail Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check CAD Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Disbursement Link
+    Click on Disbursement
+    Click on View Icon
+    Click on interfaceBtn
+    Click on interface Status Close
+    Click on Disburse
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Sleep    10s
 Basic Details
     [Arguments]    ${user}
     Click on Edit Icon
@@ -295,6 +456,42 @@ Basic Details
     Select Returned Cheques    ${user['ReturnedCheques']}
     Select Cheque Abuser List    ${user['ChequeAbuserList']}
     Click on Save Basic
+Basic Details_Co_Applicant
+    [Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Detail Data Entry
+    Click on KYC
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewBasicDetailsFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+    Sleep    3s
+    Select Customer Category    ${user['CustomerType']}
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+   # Select Customer Type    ${user['CustomerTypeContactDetails']}
+    Select Applicant Type    ${user['ApplicantType']}
+    Enter Email Id    ${user['email']}
+    Select Source Of Income    ${user['SourceOfIncome']}
+    Execute Javascript    window.scrollBy(0, 300);
+    Select Title    ${user['Title']}
+    Select Nationality    ${user['Nationality']}
+    Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
+    Select educationLevel    ${user['EducationLevel']}
+    Select Date From Date Picker    ${user['DateOfBirth']}
+    Sleep    5s
+    Select educationLevel    ${user['EducationLevel']}
+    Select Marital Status    ${user['MaritalStatus']}
+    Enter No Of Dependents    ${user['NoOfDependents']}
+    Select Returned Cheques    ${user['ReturnedCheques']}
+    Select Cheque Abuser List    ${user['ChequeAbuserList']}
+    Click on Save Basic
+
 Basic Details CR
     [Arguments]    ${user}
     Click on Edit Icon
@@ -585,6 +782,86 @@ Click on Detail Data Entry
     #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
     Sleep    2s
     Capture Screenshot
+Click on ICA Verification
+    Wait Until Element Is Visible    //a[contains(text(), 'ICA Verification')]    timeout=10s
+    Log    Clicking on ICA Verification
+    #Scroll Element Into View    //a[contains(text(), 'ICA Verification')]
+    Sleep    2s
+    #Click Element    //a[contains(text(), 'Detail Data Entry')]
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'ICA Verification')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
+    Sleep    2s
+    Capture Screenshot
+Click on Credit Approval Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Credit Approval')]    timeout=10s
+    Log    Clicking on Credit Approval
+    #Scroll Element Into View    //a[contains(text(), 'Credit Approval')]
+    Sleep    2s
+    #Click Element    //a[contains(text(), 'Detail Data Entry')]
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Approval')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
+    Sleep    2s
+    Capture Screenshot
+
+Click on Offer Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Offer')]    timeout=10s
+    Log    Clicking on Offer
+    #Scroll Element Into View    //a[contains(text(), 'Offer')]
+    Sleep    2s
+    #Click Element    //a[contains(text(), 'Offer')]
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Offer')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Offer')]
+    Sleep    2s
+    Capture Screenshot
+Click on Deal Printing Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Deal Printing')]    timeout=10s
+    Log    Clicking on Deal Printing
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Deal Printing')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Credit Check Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Credit Check')]    timeout=10s
+    Log    Clicking on Credit Check
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Check')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Document Collection Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Document Collection')]    timeout=10s
+    Log    Clicking on Document Collection
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Document Collection')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on LPO Link
+    Wait Until Element Is Visible    //a[contains(text(), 'LPO')]    timeout=10s
+    Log    Clicking on LPO
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'LPO')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Final Check Retail Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Final Check Retail')]    timeout=10s
+    Log    Clicking on Final Check Retail Link
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Final Check Retail')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Final Check CAD Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Final Check CAD')]    timeout=10s
+    Log    Clicking on Final Check CAD
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Final Check CAD')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Disbursement Link
+    Wait Until Element Is Visible    //a[contains(text(), 'Disbursement')]    timeout=10s
+    Log    Clicking on Disbursement
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Disbursement')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
 Click on KYC
     Wait Until Element Is Visible    //a[contains(text(), 'KYC')]    timeout=10s
     Log    Clicking on KYC
@@ -592,11 +869,25 @@ Click on KYC
     Execute JavaScript    document.evaluate("//a[contains(text(), 'KYC')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     Sleep    2s
     Capture Screenshot
+Click on Credit Approval
+    Wait Until Element Is Visible    //a[contains(text(), 'Credit Approval')]    timeout=10s
+    Log    Clicking on Credit Approval
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Approval')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
+Click on Disbursement
+    Wait Until Element Is Visible    //a[contains(text(), 'Disbursement')]    timeout=10s
+    Log    Clicking on Disbursement
+    Sleep    2s
+    Execute JavaScript    document.evaluate("//a[contains(text(), 'Disbursement')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Sleep    2s
+    Capture Screenshot
 
-Scroll Element Into View
-    [Arguments]    ${locator}
-    #${element}=    Get WebElement    ${locator}
-    Execute Javascript    arguments[0].scrollIntoView(true);    ${locator}
+#Scroll Element Into View
+#    [Arguments]    ${locator}
+#    #${element}=    Get WebElement    ${locator}
+#    Execute Javascript    arguments[0].scrollIntoView(true);    ${locator}
 
 
 Click on Edit Icon
@@ -606,6 +897,15 @@ Click on Edit Icon
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
     Sleep    3s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+    Capture Screenshot
+    Sleep    3s
+Click on View Icon
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="viewDisbursementScheduleFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 ViewBtn"][last()]     timeout=10s
+    Sleep    3s
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 ViewBtn"][last()]
     Capture Screenshot
     Sleep    3s
 Click on Edit Icon IdentifiDetails
@@ -631,7 +931,12 @@ Select Applicant Type
     Log    Selecting Applicant Type
     Select From List By Value    //select[@id="applicantType"]    ${value}
     Capture Screenshot
-
+Select Customer Category
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="customerType"]    timeout=5s
+    Log    Selecting Applicant Type
+    Select From List By Value    //select[@id="customerType"]    ${value}
+    Capture Screenshot
 Enter Email Id
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="email"]    timeout=5s
@@ -1170,6 +1475,18 @@ Select Country of Manufacture
     Wait Until Element Is Visible    //select[@id="manufactureCountry"]    timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="manufactureCountry"]    ${value}
+Enter Vat on Chasis Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="chasisNumber"]    timeout=5s
+    Log    Vat on chasisNumber
+    Input Text    //input[@name="chasisNumber"]    ${value}
+    Capture Screenshot
+Enter Vat on Engine Number
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //input[@name="engineNumber"]    timeout=5s
+    Log    Vat on engineNumber
+    Input Text    //input[@name="engineNumber"]    ${value}
+    Capture Screenshot
 Select Colour
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="colour"]    timeout=10s
@@ -1738,7 +2055,7 @@ Click on Customer Risk Rating
     Sleep    2s
     Capture Screenshot
     Execute Javascript    window.top.location.href = window.top.location.href
-
+    Execute Javascript    window.top.location.href = window.top.location.href
 Enter CompanyName
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@name="companyName"]     timeout=5s
@@ -1787,4 +2104,106 @@ Enter Address Line1C
     Wait Until Element Is Visible    //input[@id="addressLine1C"]    timeout=5s
     Log    Enter Address Line1
     Input Text    //input[@id="addressLine1C"]    ${value}
+    Capture Screenshot
+click on next button
+    Sleep    3s
+    Wait Until Element Is Visible    //a[@data-title="Move to Next"]    timeout=10s
+    Log    Clicking on Customer Risk Rating
+    #Click Element    //a[@data-title="Move to Next"]
+    Execute JavaScript    document.evaluate("//a[@data-title='Move to Next']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Capture Screenshot
+click on Approve button
+    Sleep    3s
+    Wait Until Element Is Visible    //a[@data-title="Approve"]    timeout=10s
+    Log    Clicking on Customer Risk Rating
+    #Click Element    //a[@data-title="Move to Next"]
+    Execute JavaScript    document.evaluate("//a[@data-title='Approve']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Capture Screenshot
+Enter remark
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //textarea[@id="remark"]    timeout=5s
+    Log    Enter Address Line1
+    Input Text    //textarea[@id="remark"]    ${value}
+    Capture Screenshot
+Enter remark2
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //textarea[@id="remarks2"]    timeout=5s
+    Log    Enter Address Line1
+    Input Text    //textarea[@id="remarks2"]    ${value}
+    Capture Screenshot
+click on remarkSubmit
+    Sleep    3s
+    Wait Until Element Is Visible    //a[@id="remarkSubmit"]    timeout=10s
+    Log    Clicking on remarkSubmit
+    Click Element    //a[@id="remarkSubmit"]
+    Capture Screenshot
+click on remarkSubmit Credit Approval
+    Sleep    3s
+    Wait Until Element Is Visible    //a[@id="offerremarksSubmit"]    timeout=10s
+    Log    Clicking on remarkSubmit Credit Approval
+    Click Element    //a[@id="offerremarksSubmit"]
+    Capture Screenshot
+Perform Logout Steps
+    Click Logout
+    Capture Screenshot
+    Click Logout_Pop_Up_Yes Button
+    Capture Screenshot
+Click Logout
+    Wait Until Element Is Visible    //li[@class="hil-logout"]/a    timeout=10s
+    Click Element    //li[@class="hil-logout"]/a
+
+Click Logout_Pop_Up_Yes Button
+    ${is_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    //a[@id="logoutYes"]    timeout=5s
+    Run Keyword If    ${is_visible}    Click Element    //a[@id="logoutYes"]
+Click Re_Login Button
+    Click Element    //a[@id='relogin']
+    Capture Screenshot
+Click App Pool
+    Wait Until Element Is Visible    //a[@data-original-title="App Pool"]    timeout=10s
+    Log    Clicking on App Pool
+    Click Element    //a[@data-original-title="App Pool"]
+    Capture Screenshot
+
+Enter Approval Conditions
+    [Arguments]    ${value}
+    Sleep    5s
+    Execute Javascript    window.scrollBy(0, 200);
+    Select Frame    //iframe[@id="addNewD320071RecordFrame"]
+    Wait Until Element Is Visible    //textarea[@id="comments"]     timeout=10s
+    Sleep    2s
+    Input Text    //textarea[@id="comments"]    ${value}
+Click on saveFinan
+    Wait Until Element Is Visible    //button[@id="saveFinan"]    timeout=10s
+    Log    Clicking on Save Button
+    Sleep    2s
+    Click Button    //button[@id="saveFinan"]
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on interfaceBtn
+    Wait Until Element Is Visible    //button[@id="interfaceBtn"]    timeout=10s
+    Log    Clicking on Save Button
+    Click Button    //button[@id="interfaceBtn"]
+    Capture Screenshot
+Click on Disburse
+    Wait Until Element Is Visible    //button[@id="disburseBtn"]    timeout=10s
+    Log    Clicking on Disburse
+    Click Button    //button[@id="disburseBtn"]
+    Capture Screenshot
+    Capture Screenshot
+    Execute JavaScript    window.top.focus();
+    Execute JavaScript    window.top.scrollTo(0, 0)
+    Sleep    2s
+    Execute Javascript    window.top.location.href = window.top.location.href
+    Execute Javascript    window.top.location.href = window.top.location.href
+Click on interface Status Close
+    Execute Javascript    window.scrollBy(0,100);
+    Sleep    2s
+    Wait Until Element Is Visible    //div[@id="interface-view"]/div/div/div[1]/div/a    timeout=10s
+    Log    Clicking on Interface Status Close
+    Sleep    2s
+    Execute Javascript  var element = document.evaluate('//div[@id="interface-view"]/div/div/div[1]/div/a', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
     Capture Screenshot

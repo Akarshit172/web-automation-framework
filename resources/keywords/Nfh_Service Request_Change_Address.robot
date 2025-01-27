@@ -376,20 +376,20 @@ Verify Change Address Detail
     [Arguments]    ${user}
      Wait Until Element Is Visible    //td[text()="${user['addressType']}"]     timeout=10s
      Log    ${user['addressType']} is visible
-     Wait Until Element Is Visible    //td[text()="${user['addressType']}"]/following-sibling::td[1]     timeout=10s
-     ${Address}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[1]
+     Wait Until Element Is Visible    //td[text()="${user['addressType']}"]/following-sibling::td[5]     timeout=10s
+     ${Address}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[5]
      ${flatNo_buildingNo}=     Set Variable    ${user['flatNo']}${user['buildingNo']}
      Run Keyword If    '${Address}' == '${flatNo_buildingNo}'    Log To Console    Address and flatNo_buildingNo are same.
      Run Keyword If    '${Address}' != '${flatNo_buildingNo}'    Fail    Avenue Road Lane and Road Number are different. Expected: ${Address}, Actual: ${flatNo_buildingNo}.
-     ${Building_Villa}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[2]
+     ${Building_Villa}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[1]
      ${nearestLandMark}=     Set Variable    ${user['nearestLandMark']}
      Run Keyword If    '${Building_Villa}' == '${nearestLandMark}'    Log To Console    Building Villa and nearestLandMark are same.
      Run Keyword If    '${Building_Villa}' != '${nearestLandMark}'    Fail    Avenue Road Lane and Road Number are different. Expected: ${Building_Villa}, Actual: ${nearestLandMark}.
-     ${Avenue_Road_Lane}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[3]
+     ${Avenue_Road_Lane}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[2]
      ${roadNumber}=     Set Variable    ${user['roadNumber']}
      Run Keyword If    '${Avenue_Road_Lane}' == '${roadNumber}'    Log To Console    Avenue Road Lane and Road Number are same.
      Run Keyword If    '${Avenue_Road_Lane}' != '${roadNumber}'    Fail    Avenue Road Lane and Road Number are different. Expected: ${roadNumber}, Actual: ${Avenue_Road_Lane}.
-     ${Block}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[5]
+     ${Block}=    Get Text    //td[text()="${user['addressType']}"]/following-sibling::td[4]
      ${blockCode}=     Set Variable    ${user['blockCode']}
      Run Keyword If    '${blockCode}' == '${Block}'    Log To Console    Avenue Road Lane and Road Number are same.
      Run Keyword If    '${Avenue_Road_Lane}' != '${roadNumber}'    Fail    Avenue Road Lane and Road Number are different. Expected: ${Block}, Actual: ${blockCode}'.

@@ -209,8 +209,8 @@ Select Payment Mode
 Click Save_Btn
     Click Element    //div[@id="saveData"]
 
-Scroll Element Into View
-    [Arguments]    ${element}
-    Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
+#Scroll Element Into View
+#    [Arguments]    ${element}
+#    Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
 Close PTP_Popups
     Execute Javascript    document.querySelector('a.mh-cross').click()
