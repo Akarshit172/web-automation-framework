@@ -442,7 +442,7 @@ ICA Verification
     Click Pop_Up_Yes Button
     Click Inbox
     Click on Lead    ${user['IDNumber']}
-    Sleep    10s
+
 Basic Details
     [Arguments]    ${user}
     Click on Edit Icon
@@ -455,7 +455,6 @@ Basic Details
     Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
     Select educationLevel    ${user['EducationLevel']}
     Select Date From Date Picker    ${user['DateOfBirth']}
-    Sleep    5s
     Select educationLevel    ${user['EducationLevel']}
     Select Marital Status    ${user['MaritalStatus']}
     Enter No Of Dependents    ${user['NoOfDependents']}
@@ -490,7 +489,6 @@ Basic Details_Co_Applicant
     Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
     Select educationLevel    ${user['EducationLevel']}
     Select Date From Date Picker    ${user['DateOfBirth']}
-    Sleep    5s
     Select educationLevel    ${user['EducationLevel']}
     Select Marital Status    ${user['MaritalStatus']}
     Enter No Of Dependents    ${user['NoOfDependents']}
@@ -577,7 +575,6 @@ Employment Details
     Select Income Type    ${user['incomeType']}
     Enter Income Amt    ${user['incomeType']}
     Click on Add Income
-    Sleep    5s
     Click on Save Employment
 Bank Details
     [Arguments]    ${user}
@@ -737,7 +734,6 @@ Click on Save
     Wait Until Element Is Visible    //button[@id="saveData"]    timeout=10s
     Log    Clicking on Save Button
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
-    Sleep    2s
     Click Button    //button[@id="saveData"]
     Sleep    2s
     Capture Screenshot
@@ -751,7 +747,7 @@ Click on Convert To App
     Capture Screenshot
 
 Click on Lead List
-    Sleep    5s
+    Sleep    2s
     Wait Until Element Is Visible    //a[@data-original-title="Lead List"]     timeout=10s
     Log    Clicking on Lead List
     Click Element    //a[@data-original-title="Lead List"]
@@ -782,112 +778,90 @@ Click on Detail Data Entry
     Wait Until Element Is Visible    //a[contains(text(), 'Detail Data Entry')]    timeout=10s
     Log    Clicking on Detail Data Entry
     #Scroll Element Into View    //a[contains(text(), 'Detail Data Entry')]
-    Sleep    2s
+
     #Click Element    //a[contains(text(), 'Detail Data Entry')]
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Detail Data Entry')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on ICA Verification
     Wait Until Element Is Visible    //a[contains(text(), 'ICA Verification')]    timeout=10s
     Log    Clicking on ICA Verification
-    #Scroll Element Into View    //a[contains(text(), 'ICA Verification')]
-    Sleep    2s
-    #Click Element    //a[contains(text(), 'Detail Data Entry')]
     Execute JavaScript    document.evaluate("//a[contains(text(), 'ICA Verification')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Credit Approval Link
     Wait Until Element Is Visible    //a[contains(text(), 'Credit Approval')]    timeout=10s
     Log    Clicking on Credit Approval
-    #Scroll Element Into View    //a[contains(text(), 'Credit Approval')]
-    Sleep    2s
-    #Click Element    //a[contains(text(), 'Detail Data Entry')]
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Approval')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Detail Data Entry')]
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 
 Click on Offer Link
     Wait Until Element Is Visible    //a[contains(text(), 'Offer')]    timeout=10s
     Log    Clicking on Offer
-    #Scroll Element Into View    //a[contains(text(), 'Offer')]
-    Sleep    2s
-    #Click Element    //a[contains(text(), 'Offer')]
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Offer')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     #Execute JavaScript    arguments[0].click();    //a[contains(text(), 'Offer')]
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Deal Printing Link
     Wait Until Element Is Visible    //a[contains(text(), 'Deal Printing')]    timeout=10s
     Log    Clicking on Deal Printing
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Deal Printing')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Credit Check Link
     Wait Until Element Is Visible    //a[contains(text(), 'Credit Check')]    timeout=10s
-    Log    Clicking on Credit Check
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Check')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Document Collection Link
     Wait Until Element Is Visible    //a[contains(text(), 'Document Collection')]    timeout=10s
     Log    Clicking on Document Collection
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Document Collection')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on LPO Link
     Wait Until Element Is Visible    //a[contains(text(), 'LPO')]    timeout=10s
     Log    Clicking on LPO
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'LPO')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Final Check Retail Link
     Wait Until Element Is Visible    //a[contains(text(), 'Final Check Retail')]    timeout=10s
     Log    Clicking on Final Check Retail Link
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Final Check Retail')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Final Check CAD Link
     Wait Until Element Is Visible    //a[contains(text(), 'Final Check CAD')]    timeout=10s
     Log    Clicking on Final Check CAD
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Final Check CAD')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Disbursement Link
     Wait Until Element Is Visible    //a[contains(text(), 'Disbursement')]    timeout=10s
     Log    Clicking on Disbursement
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Disbursement')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on KYC
     Wait Until Element Is Visible    //a[contains(text(), 'KYC')]    timeout=10s
     Log    Clicking on KYC
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'KYC')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Credit Approval
     Wait Until Element Is Visible    //a[contains(text(), 'Credit Approval')]    timeout=10s
     Log    Clicking on Credit Approval
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Credit Approval')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 Click on Disbursement
     Wait Until Element Is Visible    //a[contains(text(), 'Disbursement')]    timeout=10s
     Log    Clicking on Disbursement
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Disbursement')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
+    Sleep    1s
     Capture Screenshot
 
 #Scroll Element Into View
@@ -897,40 +871,34 @@ Click on Disbursement
 
 
 Click on Edit Icon
-    Sleep    5s
+    Sleep    3s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBasicDetailsFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Sleep    3s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
     Capture Screenshot
-    Sleep    3s
 Click on View Icon
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewDisbursementScheduleFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 ViewBtn"][last()]     timeout=10s
-    Sleep    3s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 ViewBtn"][last()]
     Capture Screenshot
-    Sleep    3s
 Click on Edit Icon IdentifiDetails
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewIdentifiDetailsIdFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Sleep    5s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
     Capture Screenshot
-    Sleep    3s
+    Sleep    2s
 Click on Edit Icon IdentifiDetailsC
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewIdentifiDetailsIdFrame"]
     Wait Until Element Is Visible    //a[starts-with(@onclick, concat('EditData(', "'CR',", ''))]     timeout=10s
     Click Element    //a[starts-with(@onclick, concat('EditData(', "'CR',", ''))]
     Capture Screenshot
-    Sleep    3s
 Select Applicant Type
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="applicantType"]    timeout=5s
@@ -978,7 +946,7 @@ Select Country Of Jurisdiction
     Capture Screenshot
 Select educationLevel
     [Arguments]    ${value}
-    Wait Until Element Is Visible    //select[@id="educationLevel"]    timeout=5s
+    Wait Until Element Is Visible    //select[@id="educationLevel"]    timeout=10s
     Log    Selecting educationLevel
     Select From List By Value    //select[@id="educationLevel"]    ${value}
     Capture Screenshot
@@ -1018,12 +986,10 @@ Select Cheque Abuser List
 Click on Save Basic
     Wait Until Element Is Visible    //button[@id="saveBasic"]    timeout=10s
     Log    Clicking on Save Button
-    Sleep    2s
     Click Button    //button[@id="saveBasic"]
     Capture Screenshot
     Execute JavaScript    window.top.focus();
     Execute JavaScript    window.top.scrollTo(0, 0)
-    Sleep    2s
     Execute Javascript    window.top.location.href = window.top.location.href
 Select Date From Date Picker
     [Arguments]    ${value}
@@ -1072,14 +1038,14 @@ Get Date Year
     ${year}    Evaluate    '${date}'.split('-')[2]    # Splitting 'DD-MM-YYYY'
     RETURN    ${year}
 Click Address Details
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Address Details")]]    timeout=10s
     Log    Clicking on Address Details
     Click Element    //li[a[contains(text(),"Address Details")]]
     Capture Screenshot
 Select Address Type
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 350);
     Select Frame    //iframe[@id="viewAddressDetailsFrame"]
     [Arguments]    ${value}
@@ -1121,7 +1087,7 @@ Enter buildingC
     Wait Until Element Is Visible    //input[@id="buildingC"]    timeout=5s
     Log    Enter flat
     Input Text    //input[@id="buildingC"]    ${value}
-    Sleep    5s
+    Sleep    1s
     Capture Screenshot
 Enter Avenue
     [Arguments]    ${value}
@@ -1155,13 +1121,11 @@ Select CountryC
 Select City_Area
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="state"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="state"]    ${value}
 
 Select City_AreaC
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="stateC"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="stateC"]    ${value}
 Click Is PermantAdd
     Wait Until Element Is Visible    //input[@id="isPermantAdd"]    timeout=10s
@@ -1178,16 +1142,14 @@ Click on Save Address
     Wait Until Element Is Visible    //button[@id="saveAddr"]   timeout=10s
     Log    Clicking on Save Address Button
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
-    Sleep    2s
     Click Button    //button[@id="saveAddr"]
-    Sleep    5s
+    Sleep    2s
     Capture Screenshot
 	Execute JavaScript    window.top.focus();
     Execute JavaScript    window.top.scrollTo(0, 0)
-    Sleep    2s
     Execute Javascript    window.top.location.href = window.top.location.href
 Click Identification Details
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Identification Details")]]    timeout=10s
     Log    Clicking on Identification Details
@@ -1213,15 +1175,13 @@ Select Renewal Under Process
 Select CR Status
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="crStatus"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="crStatus"]    ${value}
 Click on Save Identy
     Wait Until Element Is Visible    //button[@id="saveIdenty"]   timeout=10s
     Log    Clicking on Save Address Button
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
-    Sleep    2s
     Click Button    //button[@id="saveIdenty"]
-    Sleep    5s
+    Sleep    2s
     Capture Screenshot
     Execute JavaScript    window.top.focus();
     Execute JavaScript    window.top.scrollTo(0, 0)
@@ -1240,12 +1200,10 @@ Select Nature of Emplmt
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewemploymentIdFrame"]
     Wait Until Element Is Visible    //select[@id="natureOfEmplmt"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="natureOfEmplmt"]    ${value}
 Select Income Type
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="incomeType"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="incomeType"]    ${value}
 Enter Income Amt
     [Arguments]    ${value}
@@ -1256,19 +1214,17 @@ Enter Income Amt
 Click on Add Income
     Wait Until Element Is Visible    //button[@id="addIncomebt"]    timeout=10s
     Log    Clicking on Ad Button
-    Sleep    2s
     Click Button    //button[@id="addIncomebt"]
-    Sleep    2s
     Capture Screenshot
 Click Bank Details
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Bank Details")]]    timeout=10s
     Log    Clicking on Bank Details
     Click Element    //li[a[contains(text(),"Bank Details")]]
     Capture Screenshot
 Click Business Details
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Business Details")]]    timeout=10s
     Log    Clicking on Business Details
@@ -1276,37 +1232,32 @@ Click Business Details
     Capture Screenshot
 Select Bank Name
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBankDetailsFrame"]
     Wait Until Element Is Visible    //select[@id="bankName"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="bankName"]    ${value}
 Select Bank Name Business
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="bankName"]     timeout=10s
-    Sleep    2s
     Select From List By Label    //select[@id="bankName"]    ${value}
 Select Auto Black listed
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBussinessDetailsFrame"]
     Wait Until Element Is Visible    //select[@id="autoBlacklisted"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="autoBlacklisted"]    ${value}
 Click on Business Details Edit Icon
     Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewBussinessDetailsFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Sleep    3s
     Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
     Capture Screenshot
 Select UnList Validated
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="unListValidated"]     timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="unListValidated"]    ${value}
 
 Enter Account Number
@@ -1376,7 +1327,7 @@ Click on Save Bank
     Execute Javascript    window.top.location.href = window.top.location.href
 
 Click Contact Details
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //li[a[contains(text(),"Contact Details")]]    timeout=10s
     Log    Clicking on Contact Details
@@ -1616,7 +1567,7 @@ Click on Valuation Details
     Capture Screenshot
 Select Collateral Type
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewValuationDtlScreenFrame"]
     Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
@@ -1794,79 +1745,66 @@ Select Tool
 Select Wheel Caps
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="wheelCaps"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="wheelCaps"]    ${value}
     Capture Screenshot
 Select Floorr Mats
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="floorrMats"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="floorrMats"]    ${value}
     Capture Screenshot
 Select Fire Extinguisher
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="fireExtinguisher"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="fireExtinguisher"]    ${value}
     Capture Screenshot
 Select First AidKit
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="firstAidKit"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="firstAidKit"]    ${value}
     Capture Screenshot
 Select SpareKey
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="spareKey"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="spareKey"]    ${value}
     Capture Screenshot
 Select Radio
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="radio"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="radio"]    ${value}
     Capture Screenshot
 Select Sun Roof
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="sunRoof"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="sunRoof"]    ${value}
     Capture Screenshot
 Select Electric Window
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="electricWindow"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="electricWindow"]    ${value}
     Capture Screenshot
 Select Satellite Navigation
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="satelliteNavigation"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="satelliteNavigation"]    ${value}
     Capture Screenshot
 Select dvd
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="dvd"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="dvd"]    ${value}
     Capture Screenshot
 Select Screen
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="screen"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="screen"]    ${value}
     Capture Screenshot
 Select Air Conditioner
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="airConditioner"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="airConditioner"]    ${value}
     Capture Screenshot
 Select Battery
     [Arguments]    ${value}
     Wait Until Element Is Visible    //select[@id="battery"]    timeout=10s
-    Sleep    2s
     Select From List By Value    //select[@id="battery"]    ${value}
     Capture Screenshot
 Enter Remarks
@@ -1879,14 +1817,12 @@ Click on Loan Details
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //a[contains(text(), 'Loan Details')]    timeout=10s
     Log    Clicking on Product Details
-    Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Loan Details')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-    Sleep    2s
     Capture Screenshot
 
 Enter First Emi Date
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     #Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="viewproductIdFrame"]
     Wait Until Element Is Visible    //input[@id="firstEmiDate"]     timeout=5s
@@ -1904,7 +1840,6 @@ Enter Required Tenure
     #Press Keys    id=requiredTenure    0
     Sleep    2s
     Click Button    //input[@id="ageInYears"]
-    Sleep    5s
 Click on Save Product
     Wait Until Element Is Visible    //button[@id="saveproduct"]    timeout=10s
     Log    Clicking on Save Button
@@ -1960,7 +1895,7 @@ Click on Customer Document
     Capture Screenshot
 
 Click on New document
-    Sleep    3s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Select Frame    //iframe[@id="documentUploadLOSCollectionFrame"]
     Wait Until Element Is Visible    //button[@id="newDocument"]     timeout=5s
@@ -2086,16 +2021,16 @@ Select FormOfOrganization
 
 Enter Registration Date
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Wait Until Element Is Visible    //input[@id="registrationDate"]     timeout=5s
     Log    Registration Date
     Clear Element Text    //input[@id="registrationDate"]
-    Sleep    5s
+    Sleep    2s
     Input Text    //input[@id="registrationDate"]    ${value}
     Capture Screenshot
 Enter Expiration Date
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Wait Until Element Is Visible    //input[@id="expirationDate"]     timeout=5s
     Log    Expiration Date
     Clear Element Text    //input[@id="expirationDate"]
@@ -2121,14 +2056,14 @@ Enter Address Line1C
     Input Text    //input[@id="addressLine1C"]    ${value}
     Capture Screenshot
 click on next button
-    Sleep    3s
+    Sleep    2s
     Wait Until Element Is Visible    //a[@data-title="Move to Next"]    timeout=10s
     Log    Clicking on Customer Risk Rating
     #Click Element    //a[@data-title="Move to Next"]
     Execute JavaScript    document.evaluate("//a[@data-title='Move to Next']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     Capture Screenshot
 click on Approve button
-    Sleep    3s
+    Sleep    2s
     Wait Until Element Is Visible    //a[@data-title="Approve"]    timeout=10s
     Log    Clicking on Customer Risk Rating
     #Click Element    //a[@data-title="Move to Next"]
@@ -2147,13 +2082,13 @@ Enter remark2
     Input Text    //textarea[@id="remarks2"]    ${value}
     Capture Screenshot
 click on remarkSubmit
-    Sleep    3s
+    Sleep    2s
     Wait Until Element Is Visible    //a[@id="remarkSubmit"]    timeout=10s
     Log    Clicking on remarkSubmit
     Click Element    //a[@id="remarkSubmit"]
     Capture Screenshot
 click on remarkSubmit Credit Approval
-    Sleep    3s
+    Sleep    2s
     Wait Until Element Is Visible    //a[@id="offerremarksSubmit"]    timeout=10s
     Log    Clicking on remarkSubmit Credit Approval
     Click Element    //a[@id="offerremarksSubmit"]
@@ -2181,7 +2116,7 @@ Click App Pool
 
 Enter Approval Conditions
     [Arguments]    ${value}
-    Sleep    5s
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 200);
     Select Frame    //iframe[@id="addNewD320071RecordFrame"]
     Wait Until Element Is Visible    //textarea[@id="comments"]     timeout=10s

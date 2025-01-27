@@ -20,5 +20,8 @@ def get_test_data(file_path, test_case_name):
     test_data = []
     for row in sheet.iter_rows(min_row=2, values_only=True):
         if row[0] == test_case_name:  # Match TestCaseName column
-            test_data.append({headers[i]: row[i] for i in range(len(headers))})
+            test_data.append({
+                headers[i]: (row[i] if row[i] is not None else "")  # Replace None with ""
+                for i in range(len(headers))
+            })
     return test_data
