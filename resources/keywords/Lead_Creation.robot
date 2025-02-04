@@ -8,7 +8,35 @@ ${serviceId}
 ${ELEMENT}    xpath=//div[@id="interface-view"]/div/div/div[1]/div/a
 *** Keywords ***
 
-
+Lead_Creation_flow_Teller
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter First Name    ${user['FirstName']}
+    Enter Second Name    ${user['SecondName']}
+    Enter Family Name    ${user['FamilyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_KYC_Teller    ${user}
 Lead_Creation_flow
 	[Arguments]    ${user}
     Wait For Page To Load
@@ -38,11 +66,6 @@ Lead_Creation_flow
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
     Lead_Creation_KYC    ${user}
-#    Lead_Creation_Product_Details    ${user}
-#    Lead_Creation_Loan Details    ${user}
-#    Lead_Creation_Repayment_Mode    ${user}
-#    Lead_Creation_Customer_Document    ${user}
-#    Lead_Creation_Policy_Review    ${user}
 
     #Select ID Type    ${user['IDType']}
     #Enter ID Number    ${user['IDNumber']}
@@ -81,14 +104,6 @@ Lead_Creation_CR_flow
     ICA Verification    ${user}
 Lead_Creation_KYC
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on KYC
     Basic Details    ${user}
     Address Details    ${user}
@@ -102,16 +117,23 @@ Lead_Creation_KYC
     Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
     ICA Verification    ${user}
+Lead_Creation_KYC_Teller
+    [Arguments]    ${user}
+    Click on KYC
+    Basic Details    ${user}
+    Address Details    ${user}
+    Identification Details    ${user}
+    Employment Details    ${user}
+    Bank Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details_Teller    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+    ICA Verification_Teller    ${user}
 Lead_Creation_CR_KYC
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on KYC
     Basic Details CR    ${user}
     Address Details CR    ${user}
@@ -128,14 +150,6 @@ Lead_Creation_CR_KYC
 
 Lead_Creation_Product_Details
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Product Details
     Select Record Available With NFH	${user['regWithNfh']}
     Select Purchase Type	${user['vehPurchaseType']}
@@ -163,17 +177,38 @@ Lead_Creation_Product_Details
     Select Admin Fees Payment Mode    ${user['modeOfPayment']}
     Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
     Click on Save Collateral
+Lead_Creation_Product_Details_Teller
+    [Arguments]    ${user}
+    Click on Product Details
+    Select Record Available With NFH	${user['regWithNfh']}
+    Select Purchase Type	${user['vehPurchaseType']}
+    Select Hire Purchase	${user['hirePurchase']}
+    Select Vehicle Owner	${user['isApplicantOwner']}
+    Select Security Type	${user['isPrimrySecurity']}
+    Select Vehicle Dealer	${user['vehDealer']}
+    Select Dealer Salesman	${user['dealerSaleman']}
+    Select Vehicle Category	${user['vehCat']}
+    Select Vehicle maker	${user['vehMaker']}
+    Select Vehicle Model	${user['vehModel']}
+    Select Vehicle Model Category	${user['vehModelCat']}
+    Select Country of Manufacture	${user['manufactureCountry']}
+    Enter Vat on Chasis Number    ${user['chasisNumber']}
+    Enter Vat on Engine Number    ${user['engineNumber']}
+    Select Colour	${user['colour']}
+    Select Year Of Manufacture    ${user['manufactureYear']}
+    Enter Vehicle Price    ${user['vehiclePrice_txt']}
+    Enter Down Payment    ${user['downPaymentPer_txt']}
+    Enter Initial Payment To NFH    ${user['initialPaymt_txt']}
+    Enter Actual Vehicle Price    ${user['actVehiclePrice_txt']}
+#    Enter Admin Fees    ${user['adminCharge_txt']}
+#    Enter Vat on Admin Fees    ${user['adminVat']}
+#    Enter Admin Fees Including VAT    ${user['adminChagreWithVat_txt']}
+#    Select Admin Fees Payment Mode    ${user['modeOfPayment']}
+    Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
+    Click on Save Collateral
 
 Lead_Creation_Valuation Details
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Valuation Details
     Select Collateral Type	${user['collateralType']}
     Select Collateral SubType	${user['collateralSubType']}
@@ -224,14 +259,6 @@ Lead_Creation_Valuation Details
     Enter Remarks    ${user['remarks']}
 Lead_Creation_Loan Details
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Product Details
     Click on Loan Details
     Enter First Emi Date    ${user['firstEmiDate']}
@@ -240,14 +267,6 @@ Lead_Creation_Loan Details
 
 Lead_Creation_Repayment_Mode
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Product Details
     Click on Repayment Mode
     Enter Repayment Mode    ${user['repaymentMode']}
@@ -255,14 +274,6 @@ Lead_Creation_Repayment_Mode
     Click on Save RepaymentDtls
 Lead_Creation_Customer_Document
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Customer Document
     Click on New document
     Select Document Group    ${user['docGrp']}
@@ -271,14 +282,6 @@ Lead_Creation_Customer_Document
     Click on Save Document
 Lead_Creation_Policy_Review
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     Click on Policy Review
     Click on Policy Check
     Click Credit Score Card
@@ -287,14 +290,6 @@ Lead_Creation_Policy_Review
     Click on Customer Risk Rating
 ICA Verification
     [Arguments]    ${user}
-#    Wait For Page To Load
-#    Capture Screenshot
-#    Input Username    ${user['username1']}
-#    Click Login Button
-#    Click Pop_Up_Yes Button
-#    Click Inbox
-#    Click on Lead    ${user['IDNumber']}
-#    Click on Detail Data Entry
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
@@ -374,6 +369,167 @@ ICA Verification
     Click Pop_Up_Yes Button
     Click App Pool
     Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Document Collection Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on LPO Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check Retail Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check CAD Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Disbursement Link
+    Click on Disbursement
+    Click on View Icon
+    Click on interfaceBtn
+    Click on interface Status Close
+    Click on Disburse
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+ICA Verification_Teller
+    [Arguments]    ${user}
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on ICA Verification
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Offer Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Deal Printing Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Check Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Document Collection Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Open URL And Verify Teller    ${user}
+    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Wait For Page To Load
+    Input Username    ${user['username']}
+    Click Login Button
     Click Pop_Up_Yes Button
     Click Inbox
     Click on Lead    ${user['IDNumber']}
@@ -555,7 +711,9 @@ Identification Details
     Click on Edit Icon IdentifiDetails
     #Click Identification Details
     Enter Issue Date    ${user['issueDate']}
+    #Click Date Picker    //input[@id='issueDate']    ${user['issueDate']}
     Enter Expiry Date    ${user['expiryDate']}
+    #Click Date Picker    //input[@id='expiryDate']    ${user['expiryDate']}
     Select Renewal Under Process    ${user['renewalUnderProcess']}
     Click on Save Identy
 Identification DetailsC
@@ -1924,6 +2082,7 @@ Select Relation With Cust
 Choose document
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight);
     Choose File    xpath=//input[@id="documentData" and @type="file"]    D:/New_automation_/web-automation-framework/tests/selenium-screenshot-1.png
+    Capture Screenshot
 Click on Save Document
     Wait Until Element Is Visible    //button[@id="saveDoc"]    timeout=10s
     Log    Clicking on Save RepaymentDtls
@@ -2062,6 +2221,10 @@ click on next button
     #Click Element    //a[@data-title="Move to Next"]
     Execute JavaScript    document.evaluate("//a[@data-title='Move to Next']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     Capture Screenshot
+Input Password
+    [Arguments]    ${password}
+    Input Text    //input[@id='uiPwd']    ${password}
+    Capture Screenshot
 click on Approve button
     Sleep    2s
     Wait Until Element Is Visible    //a[@data-title="Approve"]    timeout=10s
@@ -2138,6 +2301,51 @@ Click on interfaceBtn
     Log    Clicking on Save Button
     Click Button    //button[@id="interfaceBtn"]
     Capture Screenshot
+Click on Create Voucher
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    (//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]    timeout=10s
+    #Execute Javascript    window.scrollBy(0, 100);
+    Log    Clicking on Create Voucher
+#    Execute Javascript  var element = document.evaluate("(//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
+    Click Button    (//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]
+    Capture Screenshot
+Click on checkbox
+    Execute Javascript    document.querySelector('#checkbox-0').scrollIntoView(true);
+    Wait Until Element Is Visible    //input[@id="checkbox-0"]    timeout=10s
+    Execute Javascript  var element = document.evaluate('//input[@id="checkbox-0"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
+    Log    Clicking on checkbox
+    #Click Element    //input[@id="checkbox-0"]
+    Capture Screenshot
+
+Click on Submit Form
+    Wait Until Element Is Visible    //a[@id="submitForm"]    timeout=10s
+    Log    Clicking on Submit Form
+    Click Element    //a[@id="submitForm"]
+    Sleep    5s
+Click on Add New
+    Execute Javascript    document.querySelector('#btnexpand').scrollIntoView(true);
+    Wait Until Element Is Visible    //a[@id="btnexpand"]    timeout=10s
+    Log    Clicking on Add New
+    Click Element    //a[@id="btnexpand"]
+    Capture Screenshot
+Click on Add Button
+    #Execute Javascript    document.querySelector('#btnAdd').scrollIntoView(true);
+    Wait Until Element Is Visible    //button[@id="btnAdd"]    timeout=10s
+    Log    Clicking on Add Button
+    Click Button    //button[@id="btnAdd"]
+    Capture Screenshot
+Click on Save Customer
+    Execute Javascript    document.querySelector('#btnAdd').scrollIntoView(true);
+    Wait Until Element Is Visible    //button[@id="saveCustomer"]    timeout=10s
+    Log    Clicking on Save Customer
+    Click Button    //button[@id="saveCustomer"]
+    Capture Screenshot
+Select SRC Of Payment
+    [Arguments]    ${value}
+    Wait Until Element Is Visible    //select[@id="srcOfPayment"]    timeout=5s
+    Log    PlaceOfEstablishment
+    Select From List By Value    //select[@id="srcOfPayment"]    ${value}
+    Capture Screenshot
 Click on Disburse
     Wait Until Element Is Visible    //button[@id="disburseBtn"]    timeout=10s
     Log    Clicking on Disburse
@@ -2157,3 +2365,58 @@ Click on interface Status Close
     Sleep    2s
     Execute Javascript  var element = document.evaluate('//div[@id="interface-view"]/div/div/div[1]/div/a', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
     Capture Screenshot
+Open URL And Verify Teller
+    [Arguments]    ${user}
+    Close Browser
+    Sleep    2s
+    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0/LoginPage?tid=139    chrome
+#    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0    chrome
+    Wait For Page To Load
+    Maximize Browser Window
+    Input Username    ${user['username2']}
+    Input Password    ${user['Password2']}
+    Click Login Button
+    Wait Until Element Is Visible    //a[@data-original-title="Menu"]    timeout=10s
+    Click Element    //a[@data-original-title="Menu"]
+    Execute Javascript    document.querySelector('#Transaction').scrollIntoView(true);
+    Wait Until Element Is Visible    //li[@id="Transaction"]    timeout=10s
+    Click Element    //li[@id="Transaction"]
+    Capture Screenshot
+    Wait Until Element Is Visible    //li[@id="txnentry"]    timeout=10s
+    Click Element    //li[@id="txnentry"]
+    Capture Screenshot
+    Wait Until Element Is Visible    //li[@id="TRANSACTION_QUEUE"]    timeout=10s
+    Click Element    //li[@id="TRANSACTION_QUEUE"]
+    Capture Screenshot
+    #Handle Alert  accept
+    Wait Until Element Is Visible    //input[@id='servReqDate']    timeout=10s
+    #Clear Element Text    //input[@id='servReqDate']
+    Wait Until Element Is Visible    //button[@id="btnView"]    timeout=10s
+    Click Date Picker    //input[@id='servReqDate']    ${user['servReqDate']}
+    Wait Until Element Is Visible    //button[@id="btnView"]    timeout=10s
+	Log    Clicking on btnView
+    Click Element    //button[@id="btnView"]
+    Sleep    2s
+    Click on Create Voucher    ${user['IDNumber']}
+#    Click on checkbox
+    Sleep    2s
+    Click on Add New
+    Select SRC Of Payment    ${user['srcOfPayment']}
+    Click on checkbox
+    Sleep    2s
+    Click on Add Button
+    Click on Save Customer
+    Click on Submit Form
+    Sleep    5s
+    Input Text Into Alert    ${user['remark']}
+    Sleep    5s
+#    Handle Alert  accept
+#    ${alert}=    Run Keyword And Ignore Error    Handle Alert
+    Capture Screenshot
+#    Wait Until Element Is Visible    //input[@id="successMsg"]    timeout=100s
+    Sleep    1s
+    Capture Screenshot
+    Close Browser
+
+*** Keywords ***
+

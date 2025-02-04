@@ -407,14 +407,6 @@ Click on Repayment_Submit
     Click Button    //button[@id="repaymentSubmit"]
     Capture Screenshot
 
-
-Here’s how you can create a Robot Framework keyword to open a URL dynamically and check for expected text on the page:
-
-Keyword Implementation
-robot
-Copy code
-
-
 Open URL And Verify Repayment Mode
     [Arguments]    ${user}
     Close Browser
