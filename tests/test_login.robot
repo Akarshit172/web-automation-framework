@@ -24,7 +24,6 @@ ${DATE_FORMAT}        %Y-%m-%d_%H-%M-%S
 Valid Login Test 1
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
-    #${us}    Addition    4    5
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Valid Login Test 1
     FOR    ${user}    IN    @{login_data}
         Perform Login Steps    ${user}

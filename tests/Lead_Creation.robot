@@ -63,11 +63,13 @@ Lead_Creation_CR
     END
     Close Browser
 
-#Lead_Creation_CR_Co_Applicant
-#    [Documentation]    Test login using data from Excel
-#    Maximize Browser Window
-#    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_Co_Applicant
-#    FOR    ${user}    IN    @{login_data}
+Lead_Creation_CPR_Co_Applicant
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR_Co_Applicant
+    FOR    ${user}    IN    @{login_data}
+        Lead_Creation_flow_CPR_Co_Applicant    ${user}
+#        Lead_Creation_Product_Details_CPR_Co_Applicant    ${user}
 #        Basic Details_Co_Applicant    ${user}
-#        #Open URL And Verify Change Address   ${user}
-#    END
+
+    END

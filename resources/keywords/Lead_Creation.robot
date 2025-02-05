@@ -69,6 +69,35 @@ Lead_Creation_flow
 
     #Select ID Type    ${user['IDType']}
     #Enter ID Number    ${user['IDNumber']}
+Lead_Creation_flow_CPR_Co_Applicant
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter First Name    ${user['FirstName']}
+    Enter Second Name    ${user['SecondName']}
+    Enter Family Name    ${user['FamilyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_KYC_CPR_Co_Applicant    ${user}
 Lead_Creation_CR_flow
 	[Arguments]    ${user}
     Wait For Page To Load
@@ -112,6 +141,21 @@ Lead_Creation_KYC
     Bank Details    ${user}
     Contact Details    ${user}
     Lead_Creation_Product_Details    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+    ICA Verification    ${user}
+Lead_Creation_KYC_CPR_Co_Applicant
+    [Arguments]    ${user}
+    Click on KYC
+    Basic Details   ${user}
+    Address Details    ${user}
+    Identification Details    ${user}
+    Employment Details    ${user}
+    Bank Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details_CPR_Co_Applicant    ${user}
     Lead_Creation_Loan Details    ${user}
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
@@ -176,6 +220,51 @@ Lead_Creation_Product_Details
     #Enter Admin Fees Including VAT    ${user['adminChagreWithVat_txt']}
     Select Admin Fees Payment Mode    ${user['modeOfPayment']}
     Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
+    Click on Save Collateral
+Lead_Creation_Product_Details_CPR_Co_Applicant
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+#    Click on KYC
+    Click on Product Details
+#    Select Collateral Type	${user['collateralType']}
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralType"]    ${user['collateralType']}
+    Select Collateral SubType	${user['collateralSubType']}
+    Select_Value_for_Xpath    //select[@id="soleqiRegWithNfh"]    ${user['regWithNfh']}
+    Select_Value_for_Xpath    //select[@id="soleqiPurchaseType"]    ${user['vehPurchaseType']}
+    Select_Value_for_Xpath    //select[@id="soleqiHirePurchase"]    ${user['hirePurchase']}
+    Select_Value_for_Xpath    //select[@id="soleqiIsApplicantOwner"]    ${user['isApplicantOwner']}
+    Select_Value_for_Xpath    //select[@id="soleqiIsPrimrySecurity"]    ${user['isPrimrySecurity']}
+    Select_Value_for_Xpath    //select[@id="soleqiDealer"]    ${user['vehDealer']}
+    Select_Value_for_Xpath    //select[@id="soleqiDealerSaleman"]    ${user['dealerSaleman']}
+    Select_Value_for_Xpath    //select[@id="soleqiCat"]    ${user['vehCat']}
+    Select_Value_for_Xpath    //select[@id="soleqiMaker"]    ${user['vehMaker']}
+    Select_Value_for_Xpath    //select[@id="soleqiModel"]    ${user['vehModel']}
+    Select_Value_for_Xpath    //select[@id="soleqiModelCat"]    ${user['vehModelCat']}
+    Select_Value_for_Xpath    //select[@id="soleqimanufactureCountry"]    ${user['manufactureCountry']}
+    Select_Value_for_Xpath    //select[@id="soleqiManufactureYear"]    ${user['manufactureYear']}
+    Enter_Value_for_Xpath    //input[@id="soleqiSeriolNumber"]    ${user['soleqiSeriolNumber']}
+    Select_Value_for_Xpath    //select[@id="soleqiColour"]    ${user['colour']}
+    Enter_Value_for_Xpath    //input[@id="soleqiPanelWattage"]    ${user['PanelWattage']}
+    Enter_Value_for_Xpath    //input[@id="soleqiInverterType"]    ${user['InverterType']}
+    Enter_Value_for_Xpath    //input[@id="soleqiInverterMake"]    ${user['InverterMake']}
+    Enter_Value_for_Xpath    //input[@id="soleqiInverterSize"]    ${user['InverterSize']}
+    Enter_Value_By_ID    soleqiEqipmentPrice_txt    ${user['vehiclePrice_txt']}
+    Enter_Value_By_ID    soleqiEqipmentActPrice_txt    ${user['actVehiclePrice_txt']}
+    Select_Value_for_Xpath    //select[@id="soleqiLtv"]    ${user['soleqiLtv']}
+    Enter_Value_By_ID    soleqiAdminCharge_txt    ${user['adminCharge_txt']}
+    Select_Value_for_Xpath    //select[@id="soleqiModeOfPayment"]    ${user['modeOfPayment']}
+    Select_Value_for_Xpath    //select[@id="soleqiIsInsuredWithNFH"]    ${user['isInsuredWithNFH']}
     Click on Save Collateral
 Lead_Creation_Product_Details_Teller
     [Arguments]    ${user}
@@ -456,6 +545,13 @@ ICA Verification_Teller
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
+    Approval Link    ${user}
+    Offer Link    ${user}
+    Deal Printing Link    ${user}
+    Credit Check Link    ${user}
+    Document Collection Link    ${user}
+Approval Link
+    [Arguments]    ${user}
     Click Inbox
     Click on Lead    ${user['IDNumber']}
     Click on Credit Approval Link
@@ -479,6 +575,8 @@ ICA Verification_Teller
     click on Approve button
     Enter remark2    ${user['remark']}
     click on remarkSubmit Credit Approval
+Offer Link
+    [Arguments]    ${user}
     Click App Pool
     Click on Pull    ${user['IDNumber']}
     Click Pop_Up_Yes Button
@@ -493,12 +591,18 @@ ICA Verification_Teller
     Click Pop_Up_Yes Button
     Click Inbox
     Click on Lead    ${user['IDNumber']}
+
+Deal Printing Link
+    [Arguments]    ${user}
     Click on Deal Printing Link
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
     Perform Logout Steps
     Click Re_Login Button
+
+Credit Check Link
+    [Arguments]   ${user}
     Input Username    ${user['username1']}
     Click Login Button
     Click Pop_Up_Yes Button
@@ -513,6 +617,8 @@ ICA Verification_Teller
     click on remarkSubmit
     Perform Logout Steps
     Click Re_Login Button
+Document Collection Link
+    [Arguments]    ${user}
     Input Username    ${user['username']}
     Click Login Button
     Click Pop_Up_Yes Button
@@ -632,12 +738,13 @@ Basic Details_Co_Applicant
     Select Frame    //iframe[@id="viewBasicDetailsFrame"]
     Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
     Sleep    3s
-    Select Customer Category    ${user['CustomerType']}
+    Select Customer Category    ${user['CustomerTypeContactDetails']}
     Select ID Type    ${user['IDType']}
     Enter ID Number    ${user['IDNumber']}
    # Select Customer Type    ${user['CustomerTypeContactDetails']}
     Select Applicant Type    ${user['ApplicantType']}
     Enter Email Id    ${user['email']}
+    Enter Mobile Number    ${user['MobileNumber']}
     Select Source Of Income    ${user['SourceOfIncome']}
     Execute Javascript    window.scrollBy(0, 300);
     Select Title    ${user['Title']}
@@ -1539,9 +1646,9 @@ Click on Product Details
 Select Record Available With NFH
     [Arguments]    ${value}
     Sleep    5s
-    Execute Javascript    window.scrollBy(0, 200);
+    Execute Javascript    window.scrollBy(0, 400);
     Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
-    Wait Until Element Is Visible    //select[@id="regWithNfh"]     timeout=10s
+    Wait Until Element Is Visible    //select[@id="regWithNfh"]     timeout=100s
     Sleep    2s
     Select From List By Value    //select[@id="regWithNfh"]    ${value}
 Select Purchase Type
@@ -1621,9 +1728,20 @@ Select Year Of Manufacture
     Wait Until Element Is Visible    //select[@id="manufactureYear"]    timeout=10s
     Sleep    2s
     Select From List By Value    //select[@id="manufactureYear"]    ${value}
+Select_Value_for_Xpath
+    [Arguments]    ${xpath}    ${value}
+    Log    Selecting value ${value} for ${xpath}
+    Wait Until Element Is Visible    ${xpath}    timeout=10s
+    Sleep    2s
+    Select From List By Value    ${xpath}    ${value}
+Enter_Value_for_Xpath
+    [Arguments]    ${xpath}    ${value}
+    Log    Entering value ${value} for ${xpath}
+    Wait Until Element Is Visible    ${xpath}    timeout=5s
+    Input Text    ${xpath}    ${value}
+    Capture Screenshot
 Enter Vehicle Price
     [Arguments]    ${value}
-
     Wait Until Element Is Visible    //input[@name="vehiclePrice_txt"]    timeout=5s
     Execute JavaScript    document.getElementById('vehiclePrice_txt').focus();
     Execute JavaScript    document.getElementById('vehiclePrice_txt').value = '';
@@ -2303,11 +2421,16 @@ Click on interfaceBtn
     Capture Screenshot
 Click on Create Voucher
     [Arguments]    ${value}
-    Wait Until Element Is Visible    (//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]    timeout=10s
-    #Execute Javascript    window.scrollBy(0, 100);
+#    Wait Until Element Is Visible    (//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]    timeout=10s
+#    #Execute Javascript    window.scrollBy(0, 100);
+#    Log    Clicking on Create Voucher
+##    Execute Javascript  var element = document.evaluate("(//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
+#    Click Button    (//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]
+#    Capture Screenshot
+    Wait Until Element Is Visible    xpath=(//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]    timeout=10s
+    Scroll Element Into View    xpath=(//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]
+    Click Element    xpath=(//tr[td[10]='${value}']//button[text()='Create Voucher'])[1]
     Log    Clicking on Create Voucher
-#    Execute Javascript  var element = document.evaluate("(//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(element) { element.click(); } else { throw new Error("Element not found"); }
-    Click Button    (//tr[td[10]='${value}']//button[@class='button sm edit create-voucher' and text()='Create Voucher'])[1]
     Capture Screenshot
 Click on checkbox
     Execute Javascript    document.querySelector('#checkbox-0').scrollIntoView(true);
@@ -2407,9 +2530,9 @@ Open URL And Verify Teller
     Click on Add Button
     Click on Save Customer
     Click on Submit Form
-    Sleep    5s
+    Sleep    2s
     Input Text Into Alert    ${user['remark']}
-    Sleep    5s
+    Sleep    2s
 #    Handle Alert  accept
 #    ${alert}=    Run Keyword And Ignore Error    Handle Alert
     Capture Screenshot
@@ -2419,4 +2542,27 @@ Open URL And Verify Teller
     Close Browser
 
 *** Keywords ***
+Enter_Value_For_Xpath_Hidden
+    [Arguments]    ${xpath}    ${value}
+    Wait Until Element Is Visible    ${xpath}    timeout=5s
+    Execute JavaScript    document.querySelector('${xpath}').focus();
+    Execute JavaScript    document.querySelector('${xpath}').value = '';
+    Input Text    ${xpath}    ${value}
+    Execute JavaScript    document.querySelector('${xpath}').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.querySelector('${xpath}').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.querySelector('${xpath}').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.querySelector('${xpath}').dispatchEvent(new Event('blur'));
+    Capture Screenshot
+Enter_Value_By_ID
+    [Arguments]    ${id}    ${value}
+    Wait Until Element Is Visible    id=${id}    timeout=5s
+    Execute JavaScript    document.getElementById('${id}').focus();
+    Execute JavaScript    document.getElementById('${id}').value = '';
+    Input Text    id=${id}    ${value}
+    # Dispatch "Enter" key events
+    Execute JavaScript    document.getElementById('${id}').dispatchEvent(new KeyboardEvent('keydown', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('${id}').dispatchEvent(new KeyboardEvent('keyup', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('${id}').dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+    Execute JavaScript    document.getElementById('${id}').dispatchEvent(new Event('blur'));
+    Capture Screenshot
 
