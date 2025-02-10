@@ -15,6 +15,7 @@ ${SHEET_NAME}         LoginData
 ${SCREENSHOT_DIR}     screenshots/screenshot
 ${DATE_FORMAT}        %Y-%m-%d_%H-%M-%S
 *** Test Cases ***
+
 Lead_Creation_CPR
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
@@ -24,7 +25,7 @@ Lead_Creation_CPR
         FOR    ${user}    IN    @{login_data}
             Run Keyword If    ${i} > 1    Run Keywords    Close Browser
             Run Keyword If    ${i} > 1    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
-            #Lead_Creation_flow    ${user}
+            Lead_Creation_flow    ${user}
             #Lead_Creation_KYC    ${user}
             #ICA Verification    ${user}
         END
@@ -40,6 +41,7 @@ Lead_Creation_CPR_Teller
             Run Keyword If    ${i} > 1    Run Keywords    Close Browser
             Run Keyword If    ${i} > 1    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
             Lead_Creation_flow_Teller    ${user}
+#            Document Collection Link    ${user}
             #Lead_Creation_Product_Details_Teller    ${user}
             #Lead_Creation_KYC_Teller    ${user}
             #ICA Verification_Teller    ${user}
@@ -63,13 +65,28 @@ Lead_Creation_CR
     END
     Close Browser
 
-Lead_Creation_CPR_Co_Applicant
+Lead_Creation_CPR_Co_Applicant_Solar
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
-    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR_Co_Applicant
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR_Co_Applicant_Solar
     FOR    ${user}    IN    @{login_data}
         Lead_Creation_flow_CPR_Co_Applicant    ${user}
 #        Lead_Creation_Product_Details_CPR_Co_Applicant    ${user}
 #        Basic Details_Co_Applicant    ${user}
 
+    END
+Lead_Creation_CR_Co_Applicant_Solar
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_Co_Applicant_Solar
+    FOR    ${user}    IN    @{login_data}
+        Lead_Creation_CR_flow_Co_Applicant    ${user}
+    END
+Lead_Creation_CR_Co_Applicant_Medical
+    [Documentation]    Test login using data from Excel
+    Maximize Browser Window
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_Co_Applicant_Medical
+    FOR    ${user}    IN    @{login_data}
+        Lead_Creation_CR_flow_Co_Applicant_Medical    ${user}
+#        Lead_Creation_Product_Details_Co_Applicant_Medical    ${user}
     END

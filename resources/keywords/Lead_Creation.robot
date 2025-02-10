@@ -98,6 +98,70 @@ Lead_Creation_flow_CPR_Co_Applicant
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
     Lead_Creation_KYC_CPR_Co_Applicant    ${user}
+Lead_Creation_CR_flow_Co_Applicant
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter CompanyName    ${user['companyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_CR_KYC_CR_Co_Applicant    ${user}
+#    Lead_Creation_Loan Details    ${user}
+#    Lead_Creation_Repayment_Mode    ${user}
+#    Lead_Creation_Customer_Document    ${user}
+#    Lead_Creation_Policy_Review    ${user}
+    ICA Verification    ${user}
+Lead_Creation_CR_flow_Co_Applicant_Medical
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter CompanyName    ${user['companyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_CR_KYC_CR_Co_Medical    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+#    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+    ICA Verification_CR_Co_Applicant_Medical    ${user}
 Lead_Creation_CR_flow
 	[Arguments]    ${user}
     Wait For Page To Load
@@ -155,7 +219,7 @@ Lead_Creation_KYC_CPR_Co_Applicant
     Employment Details    ${user}
     Bank Details    ${user}
     Contact Details    ${user}
-    Lead_Creation_Product_Details_CPR_Co_Applicant    ${user}
+    Lead_Creation_Product_Details_Co_Applicant    ${user}
     Lead_Creation_Loan Details    ${user}
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
@@ -191,11 +255,48 @@ Lead_Creation_CR_KYC
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
+Lead_Creation_CR_KYC_CR_Co_Applicant
+    [Arguments]    ${user}
+    Click on KYC
+    Basic Details CR    ${user}
+    Address Details CR    ${user}
+    Identification DetailsC    ${user}
+    #Employment Details    ${user}
+    Bank Details    ${user}
+#    Business Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details_Co_Applicant    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+#    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+Lead_Creation_CR_KYC_CR_Co_Medical
+    [Arguments]    ${user}
+    Click on KYC
+    Basic Details CR    ${user}
+    Address Details CR    ${user}
+    Identification DetailsC    ${user}
+    #Employment Details    ${user}
+    Bank Details    ${user}
+#    Business Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details_Co_Applicant_Medical    ${user}
+#    Lead_Creation_Loan Details    ${user}
+#    Lead_Creation_Repayment_Mode    ${user}
+##    Lead_Creation_Customer_Document    ${user}
+#    Lead_Creation_Policy_Review    ${user}
 
 Lead_Creation_Product_Details
     [Arguments]    ${user}
     Click on Product Details
-    Select Record Available With NFH	${user['regWithNfh']}
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralType"]    ${user['collateralType']}
+    Select Collateral SubType	${user['collateralSubType']}
+    Select_Value_for_Xpath    //select[@id="regWithNfh"]    ${user['regWithNfh']}
+#    Select Record Available With NFH	${user['regWithNfh']}
     Select Purchase Type	${user['vehPurchaseType']}
     Select Hire Purchase	${user['hirePurchase']}
     Select Vehicle Owner	${user['isApplicantOwner']}
@@ -221,7 +322,7 @@ Lead_Creation_Product_Details
     Select Admin Fees Payment Mode    ${user['modeOfPayment']}
     Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
     Click on Save Collateral
-Lead_Creation_Product_Details_CPR_Co_Applicant
+Lead_Creation_Product_Details_Co_Applicant
     [Arguments]    ${user}
 #    Wait For Page To Load
 #    Capture Screenshot
@@ -269,7 +370,14 @@ Lead_Creation_Product_Details_CPR_Co_Applicant
 Lead_Creation_Product_Details_Teller
     [Arguments]    ${user}
     Click on Product Details
-    Select Record Available With NFH	${user['regWithNfh']}
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralType"]    ${user['collateralType']}
+    Select Collateral SubType	${user['collateralSubType']}
+    Select_Value_for_Xpath    //select[@id="regWithNfh"]    ${user['regWithNfh']}
+#    Select Record Available With NFH	${user['regWithNfh']}
     Select Purchase Type	${user['vehPurchaseType']}
     Select Hire Purchase	${user['hirePurchase']}
     Select Vehicle Owner	${user['isApplicantOwner']}
@@ -295,7 +403,51 @@ Lead_Creation_Product_Details_Teller
 #    Select Admin Fees Payment Mode    ${user['modeOfPayment']}
     Select Is Insurance With NFH    ${user['isInsuredWithNFH']}
     Click on Save Collateral
-
+Lead_Creation_Product_Details_Co_Applicant_Medical
+    [Arguments]    ${user}
+#    Wait For Page To Load
+#    Capture Screenshot
+#    Input Username    ${user['username']}
+#    Click Login Button
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
+#    Click on Detail Data Entry
+#    Click on KYC
+    Click on Product Details
+#    Select Collateral Type	${user['collateralType']}
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //select[@id="collateralType"]     timeout=10s
+    Sleep    2s
+    Select From List By Value    //select[@id="collateralType"]    ${user['collateralType']}
+    Select Collateral SubType	${user['collateralSubType']}
+    Select_Value_for_Xpath    //select[@id="medeqiRegWithNfh"]    ${user['regWithNfh']}
+    Select_Value_for_Xpath    //select[@id="medeqiPurchaseType"]    ${user['vehPurchaseType']}
+    Select_Value_for_Xpath    //select[@id="medeqiHirePurchase"]    ${user['hirePurchase']}
+    Select_Value_for_Xpath    //select[@id="medeqiIsApplicantOwner"]    ${user['isApplicantOwner']}
+    Select_Value_for_Xpath    //select[@id="medeqiIsPrimrySecurity"]    ${user['isPrimrySecurity']}
+    Select_Value_for_Xpath    //select[@id="medeqiDealer"]    ${user['vehDealer']}
+    Select_Value_for_Xpath    //select[@id="medeqiDealerSaleman"]    ${user['dealerSaleman']}
+    Select_Value_for_Xpath    //select[@id="medeqiCat"]    ${user['vehCat']}
+    Select_Value_for_Xpath    //select[@id="medeqiMaker"]    ${user['vehMaker']}
+    Select_Value_for_Xpath    //select[@id="medeqiModel"]    ${user['vehModel']}
+    Select_Value_for_Xpath    //select[@id="medeqiModelCat"]    ${user['vehModelCat']}
+    Select_Value_for_Xpath    //select[@id="medeqimanufactureCountry"]    ${user['manufactureCountry']}
+    Select_Value_for_Xpath    //select[@id="medeqiManufactureYear"]    ${user['manufactureYear']}
+    Enter_Value_for_Xpath    //input[@id="medeqiSeriolNumber"]    ${user['soleqiSeriolNumber']}
+    Enter_Value_for_Xpath    //input[@id="nhraNumber"]    ${user['nhraNumber']}
+    Select_Value_for_Xpath    //select[@id="medeqiColour"]    ${user['colour']}
+    Enter_Value_for_Xpath    //input[@id="medeqiPowerConsumption"]    ${user['medeqiPowerConsumption']}
+    Enter_Value_for_Xpath    //input[@id="medeqiDimension"]    ${user['medeqiDimension']}
+    Enter_Value_for_Xpath    //input[@id="medeqiWeight"]    ${user['medeqiWeight']}
+    Enter_Value_By_ID    medeqiEqipmentPrice_txt    ${user['vehiclePrice_txt']}
+    Enter_Value_By_ID    medeqiEqipmentActPrice_txt    ${user['actVehiclePrice_txt']}
+    Select_Value_for_Xpath    //select[@id="medeqiLtv"]    ${user['soleqiLtv']}
+    Enter_Value_By_ID    medeqiAdminCharge_txt    ${user['adminCharge_txt']}
+    Select_Value_for_Xpath    //select[@id="medeqiModeOfPayment"]    ${user['modeOfPayment']}
+    Select_Value_for_Xpath    //select[@id="medeqiIsInsuredWithNFH"]    ${user['isInsuredWithNFH']}
+    Click on Save Collateral
 Lead_Creation_Valuation Details
     [Arguments]    ${user}
     Click on Valuation Details
@@ -377,6 +529,158 @@ Lead_Creation_Policy_Review
     Click on Internal Credit Score
     Click Customer Risk Rating
     Click on Customer Risk Rating
+ICA Verification_CR_Co_Applicant_Medical
+    [Arguments]    ${user}
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on ICA Verification
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Click Element    //li[a[contains(text(),"Recommendation")]][last()]
+    Sleep   10s
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Click Element    //li[a[contains(text(),"Recommendation")]][last()]
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Offer Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Deal Printing Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Check Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Document Collection Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on LPO Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check Retail Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username1']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Final Check CAD Link
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Disbursement Link
+    Click on Disbursement
+    Click on View Icon
+    Click on interfaceBtn
+    Click on interface Status Close
+    Click on Disburse
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Click App Pool
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
 ICA Verification
     [Arguments]    ${user}
     click on next button
@@ -400,6 +704,8 @@ ICA Verification
     Click on Lead    ${user['IDNumber']}
     Click on Credit Approval Link
     Click on Credit Approval
+    Click Element    //li[a[contains(text(),"Recommendation")]]
+    Sleep   10s
     Enter Approval Conditions    ${user['remark']}
     Click on saveFinan
     click on Approve button
@@ -414,6 +720,7 @@ ICA Verification
     Click on Lead    ${user['IDNumber']}
     Click on Credit Approval Link
     Click on Credit Approval
+    Click Element    //li[a[contains(text(),"Recommendation")]]
     Enter Approval Conditions    ${user['remark']}
     Click on saveFinan
     click on Approve button
@@ -575,6 +882,31 @@ Approval Link
     click on Approve button
     Enter remark2    ${user['remark']}
     click on remarkSubmit Credit Approval
+Approval Link_Co_Applicant_Medical
+    [Arguments]    ${user}
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
+    Perform Logout Steps
+    Click Re_Login Button
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click Inbox
+    Click on Lead    ${user['IDNumber']}
+    Click on Credit Approval Link
+    Click on Credit Approval
+    Enter Approval Conditions    ${user['remark']}
+    Click on saveFinan
+    click on Approve button
+    Enter remark2    ${user['remark']}
+    click on remarkSubmit Credit Approval
 Offer Link
     [Arguments]    ${user}
     Click App Pool
@@ -633,6 +965,7 @@ Document Collection Link
     click on remarkSubmit
     Open URL And Verify Teller    ${user}
     Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Maximize Browser Window
     Wait For Page To Load
     Input Username    ${user['username']}
     Click Login Button
@@ -710,42 +1043,7 @@ Basic Details
     Click on Edit Icon
     Select Applicant Type    ${user['ApplicantType']}
     Enter Email Id    ${user['email']}
-    Select Source Of Income    ${user['SourceOfIncome']}
-    Execute Javascript    window.scrollBy(0, 300);
-    Select Title    ${user['Title']}
-    Select Nationality    ${user['Nationality']}
-    Select Country Of Jurisdiction    ${user['countryOfJurisdiction']}
-    Select educationLevel    ${user['EducationLevel']}
-    Select Date From Date Picker    ${user['DateOfBirth']}
-    Select educationLevel    ${user['EducationLevel']}
-    Select Marital Status    ${user['MaritalStatus']}
-    Enter No Of Dependents    ${user['NoOfDependents']}
-    Select Returned Cheques    ${user['ReturnedCheques']}
-    Select Cheque Abuser List    ${user['ChequeAbuserList']}
-    Click on Save Basic
-Basic Details_Co_Applicant
-    [Arguments]    ${user}
-    Wait For Page To Load
-    Capture Screenshot
-    Input Username    ${user['username']}
-    Click Login Button
-    Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Detail Data Entry
-    Click on KYC
-    Execute Javascript    window.scrollBy(0, 200);
-    Select Frame    //iframe[@id="viewBasicDetailsFrame"]
-    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Sleep    3s
-    Select Customer Category    ${user['CustomerTypeContactDetails']}
-    Select ID Type    ${user['IDType']}
-    Enter ID Number    ${user['IDNumber']}
-   # Select Customer Type    ${user['CustomerTypeContactDetails']}
-    Select Applicant Type    ${user['ApplicantType']}
-    Enter Email Id    ${user['email']}
-    Enter Mobile Number    ${user['MobileNumber']}
-    Select Source Of Income    ${user['SourceOfIncome']}
+    #Select Source Of Income    ${user['SourceOfIncome']}
     Execute Javascript    window.scrollBy(0, 300);
     Select Title    ${user['Title']}
     Select Nationality    ${user['Nationality']}
@@ -764,7 +1062,7 @@ Basic Details CR
     Click on Edit Icon
     Select Applicant Type    ${user['ApplicantType']}
     Enter Email Id    ${user['email']}
-    Select Source Of Income    ${user['SourceOfIncome']}
+#    Select Source Of Income    ${user['SourceOfIncome']}
     Execute Javascript    window.scrollBy(0, 300);
     Select FormOfOrganization    ${user['formOfOrganization']}
     Enter Registration Date    ${user['registrationDate']}
