@@ -7,7 +7,33 @@ ${assignedTo}
 ${serviceId}
 ${ELEMENT}    xpath=//div[@id="interface-view"]/div/div/div[1]/div/a
 *** Keywords ***
-
+Lead_Creation_CR_flow_Teller
+	[Arguments]    ${user}
+    Wait For Page To Load
+    Capture Screenshot
+    Input Username    ${user['username']}
+    Click Login Button
+    Click Pop_Up_Yes Button
+    Click New Lead
+    Select ID Type    ${user['IDType']}
+    Enter ID Number    ${user['IDNumber']}
+    Select Customer Type    ${user['CustomerType']}
+    Enter CompanyName    ${user['companyName']}
+    Enter Mobile Number    ${user['MobileNumber']}
+    Select Product    ${user['Product']}
+    Select Sub Product    ${user['SubProduct']}
+    Select Scheme Type    ${user['SchemeType']}
+    Select Branch    ${user['Branch']}
+    Click on Save
+    #Click on Convert To App
+    Click on Lead List
+    Click on Lead    ${user['IDNumber']}
+    Click on Convert To App
+    Click warningPop_Up_Yes Button
+    Click on Pull    ${user['IDNumber']}
+    Click Pop_Up_Yes Button
+    Click on Detail Data Entry
+    Lead_Creation_KYC_CR_Teller    ${user}
 Lead_Creation_flow_Teller
 	[Arguments]    ${user}
     Wait For Page To Load
@@ -239,6 +265,27 @@ Lead_Creation_KYC_Teller
     Lead_Creation_Repayment_Mode    ${user}
     Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
+    ICA Verification_Teller    ${user}
+Lead_Creation_KYC_CR_Teller
+    [Arguments]    ${user}
+    Click on KYC
+    Basic Details CR    ${user}
+    Address Details CR    ${user}
+    Identification DetailsC    ${user}
+    #Employment Details    ${user}
+    Bank Details    ${user}
+    Business Details    ${user}
+    Contact Details    ${user}
+    Lead_Creation_Product_Details_Teller    ${user}
+    Lead_Creation_Loan Details    ${user}
+    Lead_Creation_Repayment_Mode    ${user}
+    Lead_Creation_Customer_Document    ${user}
+    Lead_Creation_Policy_Review    ${user}
+    Click on KYC
+    Click Business Details
+    Click on Business Details Edit Icon
+    Click Calculate
+    Click on Save Business
     ICA Verification_Teller    ${user}
 Lead_Creation_CR_KYC
     [Arguments]    ${user}
@@ -964,7 +1011,7 @@ Document Collection Link
     Enter remark    ${user['remark']}
     click on remarkSubmit
     Open URL And Verify Teller    ${user}
-    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     Wait For Page To Load
     Input Username    ${user['username']}
@@ -2650,13 +2697,13 @@ click on Approve button
     Capture Screenshot
 Enter remark
     [Arguments]    ${value}
-    Wait Until Element Is Visible    //textarea[@id="remark"]    timeout=5s
+    Wait Until Element Is Visible    //textarea[@id="remark"]    timeout=10s
     Log    Enter Address Line1
     Input Text    //textarea[@id="remark"]    ${value}
     Capture Screenshot
 Enter remark2
     [Arguments]    ${value}
-    Wait Until Element Is Visible    //textarea[@id="remarks2"]    timeout=5s
+    Wait Until Element Is Visible    //textarea[@id="remarks2"]    timeout=10s
     Log    Enter Address Line1
     Input Text    //textarea[@id="remarks2"]    ${value}
     Capture Screenshot
@@ -2790,7 +2837,8 @@ Open URL And Verify Teller
     [Arguments]    ${user}
     Close Browser
     Sleep    2s
-    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0/LoginPage?tid=139    chrome
+#    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0/LoginPage?tid=139    chrome
+    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0/LoginPage    chrome
 #    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0    chrome
     Wait For Page To Load
     Maximize Browser Window
