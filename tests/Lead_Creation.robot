@@ -16,11 +16,12 @@ ${EXCEL_FILE_PATH}    D:/New_automation_/web-automation-framework/resources/test
 
 Lead_Creation_CPR
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}   Lead_Creation_CPR
     FOR    ${user}    IN    @{login_data}
-        Lead_Creation_flow    ${user}
+        ICA Verification    ${user}
+#        Lead_Creation_flow    ${user}
     END
     [Teardown]    Close Browser
 Lead_Creation_CR_flow_Teller
@@ -34,7 +35,7 @@ Lead_Creation_CR_flow_Teller
     [Teardown]    Close Browser
 Lead_Creation_CPR_Teller
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}   Lead_Creation_CPR_Teller
     FOR    ${user}    IN    @{login_data}
@@ -44,7 +45,7 @@ Lead_Creation_CPR_Teller
 
 Lead_Creation_CR
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR
     FOR    ${user}    IN    @{login_data}
@@ -53,7 +54,7 @@ Lead_Creation_CR
     [Teardown]    Close Browser
 Lead_Creation_CPR_Co_Applicant_Solar
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR_Co_Applicant_Solar
     FOR    ${user}    IN    @{login_data}
@@ -63,7 +64,7 @@ Lead_Creation_CPR_Co_Applicant_Solar
 
 Lead_Creation_CR_Co_Applicant_Solar
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_Co_Applicant_Solar
     FOR    ${user}    IN    @{login_data}

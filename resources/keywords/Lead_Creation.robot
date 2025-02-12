@@ -600,7 +600,6 @@ ICA Verification_CR_Co_Applicant_Medical
     Click on Credit Approval Link
     Click on Credit Approval
     Click Element    //li[a[contains(text(),"Recommendation")]][last()]
-    Sleep   10s
     Enter Approval Conditions    ${user['remark']}
     Click on saveFinan
     click on Approve button
@@ -752,7 +751,6 @@ ICA Verification
     Click on Credit Approval Link
     Click on Credit Approval
     Click Element    //li[a[contains(text(),"Recommendation")]]
-    Sleep   10s
     Enter Approval Conditions    ${user['remark']}
     Click on saveFinan
     click on Approve button
