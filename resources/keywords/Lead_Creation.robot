@@ -880,11 +880,11 @@ ICA Verification
     Click on Lead    ${user['IDNumber']}
 ICA Verification_Teller
     [Arguments]    ${user}
-    click on next button
-    Enter remark    ${user['remark']}
-    click on remarkSubmit
-    Perform Logout Steps
-    Click Re_Login Button
+#    click on next button
+#    Enter remark    ${user['remark']}
+#    click on remarkSubmit
+#    Perform Logout Steps
+#    Click Re_Login Button
     Input Username    ${user['username1']}
     Click Login Button
     Click Pop_Up_Yes Button
@@ -2505,6 +2505,7 @@ Click on Save RepaymentDtls
     Capture Screenshot
     Execute Javascript    window.top.location.href = window.top.location.href
 Click on Customer Document
+    Sleep    2s
     Execute Javascript    window.scrollBy(0, 300);
     Wait Until Element Is Visible    //a[contains(text(), 'Customer Document')]    timeout=10s
     Log    Clicking on Customer Document
