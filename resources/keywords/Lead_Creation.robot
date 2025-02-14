@@ -880,11 +880,11 @@ ICA Verification
     Click on Lead    ${user['IDNumber']}
 ICA Verification_Teller
     [Arguments]    ${user}
-#    click on next button
-#    Enter remark    ${user['remark']}
-#    click on remarkSubmit
-#    Perform Logout Steps
-#    Click Re_Login Button
+    click on next button
+    Enter remark    ${user['remark']}
+    click on remarkSubmit
+    Perform Logout Steps
+    Click Re_Login Button
     Input Username    ${user['username1']}
     Click Login Button
     Click Pop_Up_Yes Button
