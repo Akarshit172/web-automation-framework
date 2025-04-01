@@ -2,7 +2,7 @@
 Library    SeleniumLibrary
 Library    D:/New_automation_/web-automation-framework/libraries/read_excel_data.py
 Resource    D:/New_automation_/web-automation-framework/resources/keywords/utility_keywords.robot
-#Library    D:/New_automation_/web-automation-framework/libraries/custom_selenium_keywords.py
+Library    D:/New_automation_/web-automation-framework/libraries/custom_selenium_keywords.py
 Library    OperatingSystem
 Library    DateTime
 Library    Collections
@@ -24,6 +24,8 @@ ${DATE_FORMAT}        %Y-%m-%d_%H-%M-%S
 Valid Login Test 1
     [Documentation]    Test login using data from Excel
     Maximize Browser Window
+    #${us}    Addition    4    5
+    Log    ${us}
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Valid Login Test 1
     FOR    ${user}    IN    @{login_data}
         Perform Login Steps    ${user}
