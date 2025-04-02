@@ -802,6 +802,16 @@ ICA Verification
     Click Inbox
     Click on Lead    ${user['IDNumber']}
     Click on Deal Printing Link
+    Click on Product Details
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+    Capture Screenshot
+    Enter Vat on Chasis Number    ${user['chasisNumber']}
+    Enter Vat on Engine Number    ${user['engineNumber']}
+    Click on Save Collateral
+    Execute Javascript    window.top.location.href = window.top.location.href
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
