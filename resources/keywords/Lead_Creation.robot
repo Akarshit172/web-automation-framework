@@ -65,6 +65,9 @@ Lead_Creation_flow_Teller
     Click Pop_Up_Yes Button
     Click on Detail Data Entry
     Lead_Creation_KYC_Teller    ${user}
+
+
+
 Lead_Creation_flow
 	[Arguments]    ${user}
     Wait For Page To Load
@@ -193,6 +196,12 @@ Lead_Creation_CR_flow_Co_Applicant_Medical
     Lead_Creation_Repayment_Mode    ${user}
 #    Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
+#    Lead_Creation_CR_KYC    ${user}
+    Click on KYC
+    Click Business Details
+    Click on Business Details Edit Icon
+    Click Calculate
+    Click on Save Business
     ICA Verification_CR_Co_Applicant_Medical    ${user}
 Lead_Creation_CR_flow
 	[Arguments]    ${user}
@@ -307,7 +316,8 @@ Lead_Creation_CR_KYC
     Lead_Creation_Product_Details    ${user}
     Lead_Creation_Loan Details    ${user}
     Lead_Creation_Repayment_Mode    ${user}
-    Lead_Creation_Customer_Document    ${user}
+#    Lead_Creation_Valuation Details    ${user}
+#    Lead_Creation_Customer_Document    ${user}
     Lead_Creation_Policy_Review    ${user}
 Lead_Creation_CR_KYC_CR_Co_Applicant
     [Arguments]    ${user}
@@ -332,7 +342,7 @@ Lead_Creation_CR_KYC_CR_Co_Medical
     Identification DetailsC    ${user}
     #Employment Details    ${user}
     Bank Details    ${user}
-#    Business Details    ${user}
+    Business Details    ${user}
     Contact Details    ${user}
     Lead_Creation_Product_Details_Co_Applicant_Medical    ${user}
 #    Lead_Creation_Loan Details    ${user}
@@ -490,7 +500,7 @@ Lead_Creation_Product_Details_Co_Applicant_Medical
     Select_Value_for_Xpath    //select[@id="medeqimanufactureCountry"]    ${user['manufactureCountry']}
     Select_Value_for_Xpath    //select[@id="medeqiManufactureYear"]    ${user['manufactureYear']}
     Enter_Value_for_Xpath    //input[@id="medeqiSeriolNumber"]    ${user['soleqiSeriolNumber']}
-    Enter_Value_for_Xpath    //input[@id="nhraNumber"]    ${user['nhraNumber']}
+#    Enter_Value_for_Xpath    //input[@id="nhraNumber"]    ${user['nhraNumber']}
     Select_Value_for_Xpath    //select[@id="medeqiColour"]    ${user['colour']}
     Enter_Value_for_Xpath    //input[@id="medeqiPowerConsumption"]    ${user['medeqiPowerConsumption']}
     Enter_Value_for_Xpath    //input[@id="medeqiDimension"]    ${user['medeqiDimension']}
@@ -523,7 +533,7 @@ Lead_Creation_Valuation Details
     Enter Mileage    ${user['mileage']}
     Enter Cylinder    ${user['cylinder']}
     Enter Color    ${user['color']}
-    Enter Insurance Type    ${user['insuranceType']}
+    Select Insurance Type    ${user['insuranceType']}
     Select Vehicle Condition    ${user['vehicleCondition']}
     Select Exterior Condition    ${user['exteriorCondition']}
     Select Interior Condition    ${user['interiorCondition']}
@@ -567,6 +577,7 @@ Lead_Creation_Repayment_Mode
     Click on Repayment Mode
     Enter Repayment Mode    ${user['repaymentMode']}
     Select isDefault    ${user['isDefault']}
+    Select From List By Value    //select[@id="accountType"]    ${user['accountType']}
     Click on Save RepaymentDtls
 Lead_Creation_Customer_Document
     [Arguments]    ${user}
@@ -607,7 +618,7 @@ ICA Verification_CR_Co_Applicant_Medical
     Click on Lead    ${user['IDNumber']}
     Click on Credit Approval Link
     Click on Credit Approval
-    Click Element    //li[a[contains(text(),"Recommendation")]][last()]
+    Click Element    //li[a[contains(text(),"Recommendation")]][1]
     Enter Approval Conditions    ${user['remark']}
     Click on saveFinan
     click on Approve button
@@ -618,21 +629,24 @@ ICA Verification_CR_Co_Applicant_Medical
     Input Username    ${user['username']}
     Click Login Button
     Click Pop_Up_Yes Button
-    Click Inbox
-    Click on Lead    ${user['IDNumber']}
-    Click on Credit Approval Link
-    Click on Credit Approval
-    Click Element    //li[a[contains(text(),"Recommendation")]][last()]
-    Enter Approval Conditions    ${user['remark']}
-    Click on saveFinan
-    click on Approve button
-    Enter remark2    ${user['remark']}
-    click on remarkSubmit Credit Approval
     Click App Pool
     Click on Pull    ${user['IDNumber']}
     Click Pop_Up_Yes Button
     Click Inbox
     Click on Lead    ${user['IDNumber']}
+#    Click on Credit Approval Link
+#    Click on Credit Approval
+#    Click Element    //li[a[contains(text(),"Recommendation")]][1]
+#    Enter Approval Conditions    ${user['remark']}
+#    Click on saveFinan
+#    click on Approve button
+#    Enter remark2    ${user['remark']}
+#    click on remarkSubmit Credit Approval
+#    Click App Pool
+#    Click on Pull    ${user['IDNumber']}
+#    Click Pop_Up_Yes Button
+#    Click Inbox
+#    Click on Lead    ${user['IDNumber']}
     Click on Offer Link
     click on next button
     Enter remark    ${user['remark']}
@@ -802,16 +816,16 @@ ICA Verification
     Click Inbox
     Click on Lead    ${user['IDNumber']}
     Click on Deal Printing Link
-    Click on Product Details
-    Execute Javascript    window.scrollBy(0, 400);
-    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
-    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
-    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
-    Capture Screenshot
-    Enter Vat on Chasis Number    ${user['chasisNumber']}
-    Enter Vat on Engine Number    ${user['engineNumber']}
-    Click on Save Collateral
-    Execute Javascript    window.top.location.href = window.top.location.href
+#    Click on Product Details
+#    Execute Javascript    window.scrollBy(0, 400);
+#    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+#    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+#    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+#    Capture Screenshot
+#    Enter Vat on Chasis Number    ${user['chasisNumber']}
+#    Enter Vat on Engine Number    ${user['engineNumber']}
+#    Click on Save Collateral
+#    Execute Javascript    window.top.location.href = window.top.location.href
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
@@ -1006,7 +1020,23 @@ Offer Link
 
 Deal Printing Link
     [Arguments]    ${user}
+    #Click on Deal Printing Link
+    #click on next button
+#    Enter remark    ${user['remark']}
+#    click on remarkSubmit
+#    Perform Logout Steps
+#    Click Re_Login Button
     Click on Deal Printing Link
+    Click on Product Details
+    Execute Javascript    window.scrollBy(0, 400);
+    Select Frame    //iframe[@id="viewCollateralBasicDtlFrame"]
+    Wait Until Element Is Visible    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]     timeout=10s
+    Click Element    //a[@class="btn sm btn-info px-1 py-0 editBtn"][last()]
+    Capture Screenshot
+    Enter Vat on Chasis Number    ${user['chasisNumber']}
+    Enter Vat on Engine Number    ${user['engineNumber']}
+    Click on Save Collateral
+    Execute Javascript    window.top.location.href = window.top.location.href
     click on next button
     Enter remark    ${user['remark']}
     click on remarkSubmit
@@ -1199,6 +1229,7 @@ Identification Details
     Enter Issue Date    ${user['issueDate']}
     #Click Date Picker    //input[@id='issueDate']    ${user['issueDate']}
     Enter Expiry Date    ${user['expiryDate']}
+    Click Element    //input[@id="validityForId"]
     #Click Date Picker    //input[@id='expiryDate']    ${user['expiryDate']}
     Select Renewal Under Process    ${user['renewalUnderProcess']}
     Click on Save Identy
@@ -2315,20 +2346,22 @@ Enter Mileage
 Enter Cylinder
     [Arguments]    ${value}
     Wait Until Element Is Visible    //input[@id="cylinder"]     timeout=5s
+    Click Element    //input[@id="cylinder"]
     Log To Console    Cylinder
     Input Text    //input[@id="cylinder"]    ${value}
     Capture Screenshot
 Enter Color
     [Arguments]    ${value}
-    Wait Until Element Is Visible    //input[@id="color"]     timeout=5s
+    Wait Until Element Is Visible    //select[@id="color"]     timeout=5s
+
     Log To Console    Color
-    Input Text    //input[@id="color"]    ${value}
+    Select From List By Value    //select[@id="color"]    ${value}
     Capture Screenshot
-Enter Insurance Type
+Select Insurance Type
     [Arguments]    ${value}
-    Wait Until Element Is Visible    //input[@id="insuranceType"]     timeout=5s
+    Wait Until Element Is Visible    //select[@id="insuranceType"]     timeout=5s
     Log To Console    Insurance Type
-    Input Text    //input[@id="insuranceType"]    ${value}
+    Select From List By Value    //select[@id="insuranceType"]    ${value}
     Capture Screenshot
 Select Vehicle Condition
     [Arguments]    ${value}
@@ -2501,6 +2534,7 @@ Enter Required Tenure
     Execute Javascript    document.getElementById('requiredTenure').value = ${value};
     #Execute Javascript    document.getElementById('requiredTenure').value = '0';
     #Press Keys    id=requiredTenure    0
+    Click Element    //input[@id="requiredTenure"]
     Sleep    2s
     Click Button    //input[@id="ageInYears"]
 Click on Save Product
@@ -2520,6 +2554,7 @@ Click on Repayment Mode
     Sleep    2s
     Execute JavaScript    document.evaluate("//a[contains(text(), 'Repayment Mode')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
     Sleep    2s
+    Handle Alert  accept
     Capture Screenshot
 Enter Repayment Mode
     [Arguments]    ${value}
@@ -2542,10 +2577,13 @@ Click on Save RepaymentDtls
     Log To Console    Clicking on Save RepaymentDtls
     Sleep    2s
     Click Button    //button[@id="saveRepaymentDtls"]
+    Sleep    2s
+    Handle Alert  accept
     Capture Screenshot
     Execute JavaScript    window.top.focus();
     Execute JavaScript    window.top.scrollTo(0, 0)
     Sleep    2s
+
     Capture Screenshot
     Execute Javascript    window.top.location.href = window.top.location.href
 Click on Customer Document
@@ -2882,7 +2920,7 @@ Open URL And Verify Teller
     [Arguments]    ${user}
     Close Browser
     Sleep    2s
-    Open Browser    http://172.21.0.42:9091/Kiya.aiCBS-10.2.0/LoginPage?tid=139    chrome
+    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0/LoginPage    chrome
 #    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0/LoginPage    chrome
 #    Open Browser    http://172.21.0.123:7777/Kiya.aiCBS-10.2.0    chrome
     Wait For Page To Load

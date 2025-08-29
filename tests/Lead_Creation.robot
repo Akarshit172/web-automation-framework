@@ -8,19 +8,20 @@ Library    DateTime
 Library    Collections
 
 *** Variables ***
-${EXCEL_FILE_PATH}    D:/New_automation_/web-automation-framework/resources/test_data/Lead_Creation.xlsx
+${EXCEL_FILE_PATH}    D:/New_automation_/web-automation-KFIC/resources/test_data/Lead_Creation.xlsx
 #${SCREENSHOT_DIR}     screenshots/screenshot
 #${DATE_FORMAT}        %Y-%m-%d_%H-%M-%S
 
 *** Test Cases ***
 
-Lead_Creation_CPR
+Receipt_Master
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
+    [Setup]    Open Browser    http://localhost:8090/Kiya.aiCBS-10.2.0    chrome
     Maximize Browser Window
-    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}   Lead_Creation_CPR
+    ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}   Receipt_Master
     FOR    ${user}    IN    @{login_data}
-        Lead_Creation_flow    ${user}
+        Receipt_Master_flow    ${user}
+        Receipt_Master_Auth_flow    ${user}
     END
     [Teardown]    Close Browser
 Lead_Creation_CR_flow_Teller
@@ -29,7 +30,7 @@ Lead_Creation_CR_flow_Teller
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CR_flow_Teller
     FOR    ${user}    IN    @{login_data}
-#        ICA Verification_Teller    ${user}
+        ICA Verification_Teller    ${user}
         Lead_Creation_CR_flow_Teller    ${user}
     END
     [Teardown]    Close Browser
@@ -39,6 +40,7 @@ Lead_Creation_CPR_Teller
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}   Lead_Creation_CPR_Teller
     FOR    ${user}    IN    @{login_data}
+        Document Collection Link    ${user}
         Lead_Creation_flow_Teller    ${user}
     END
     [Teardown]    Close Browser
@@ -54,7 +56,7 @@ Lead_Creation_CR
     [Teardown]    Close Browser
 Lead_Creation_CPR_Co_Applicant_Solar
     [Tags]    smoke    regression    lead_creation
-    [Setup]    Open Browser    http://172.21.0.42:7223/finairoLending-1.0.1/LoginPage?tid=139    chrome
+    [Setup]    Open Browser    http://172.21.0.123:5555/finairoLending-1.0.1/LoginPage?tid=139&lang=en    chrome
     Maximize Browser Window
     ${login_data}=    Get Test Data    ${EXCEL_FILE_PATH}    Lead_Creation_CPR_Co_Applicant_Solar
     FOR    ${user}    IN    @{login_data}
